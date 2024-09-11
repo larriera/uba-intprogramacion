@@ -36,13 +36,27 @@ sumaImpares n
     | n == 1 = 1
     | otherwise = sumaImpares (n-1) + 2*n - 1
 
+-- EJERCICIO 5
+-- precond: n>=0
+medioFact :: Integer -> Integer
+medioFact n
+    | n < 2 = 1
+    | otherwise = n * medioFact(n-2)
+
+-- EJERCICIO 6
+-- precond: n>0
+todosDigitosIguales :: Integer -> Bool
+todosDigitosIguales n
+    | n == mod n 10 = True
+    | mod (div n 10) 10 /= mod n 10 = False
+    | otherwise = todosDigitosIguales (div n 10)
+
 -- EJERCICIO 7
--- precond: n >= 0 && 1 <= i <= cantDigitos(n)
+-- precond: n >= 0 && 1 <= i <= cantidadDigitos(n)
 iesimoDigito :: Integer -> Integer -> Integer
 iesimoDigito n 1 = div n (10 ^ (cantidadDigitos n - 1))
 iesimoDigito n i = iesimoDigito sacarPrimero (i-1)
     where sacarPrimero = mod n (10 ^ (cantidadDigitos n - 1))
-
 
 cantidadDigitos :: Integer -> Integer
 cantidadDigitos n
