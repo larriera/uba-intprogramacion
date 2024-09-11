@@ -69,13 +69,18 @@ cantidadDigitos n
 sumaDigitos :: Integer -> Integer
 sumaDigitos n
     | n < 10 = n
-    | otherwise = sumaDigitos (div n 10) + mod n 10
+    | otherwise = sumaDigitos (div n 10) + ultimoDigito
+    where ultimoDigito = mod n 10
 
 -- EJERCICIO 9
 -- precond: n >=0
-{--
 esCapicua :: Integer -> Bool
 esCapicua n
-    | cantidadDigitos n == 1 = True
-    | 
---}
+    | n < 10 = True
+    | n < 100 = div n 10 == ultimoDigito
+    | otherwise = iesimoDigito n 1 == ultimoDigito && esCapicua sacarPrimeroyUltimo --va chequeando esCapicua sacando primero&ultimo, achicando n hasta que es menor a 100 (caso base)
+    where ultimoDigito = mod n 10
+          sacarPrimeroyUltimo = div (sacarPrimerDigito n) 10
+
+sacarPrimerDigito :: Integer -> Integer
+sacarPrimerDigito n = mod n (10 ^ ((cantidadDigitos n) - 1))
