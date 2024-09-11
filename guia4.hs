@@ -92,7 +92,13 @@ f1 1 = 3 -- 2^0 + 2^1 = 1 + 2 = 3
 f1 n = 2^n + f1 (n-1)
 
 -- EJERCICIO 10b
-f2 :: Integer -> Double -> Double
+f2 :: Integer -> Float -> Float
 f2 n q
     | n == 1 = q -- q^1 = q
     | otherwise = q^^n + f2 (n-1) q
+
+-- EJERCICIO 10c
+f3 :: Integer -> Float -> Float
+f3 n q
+    | n == 1 = q -- q^1 = q
+    | otherwise = q^^(2*n) + f2 ((2*n)-1) q
