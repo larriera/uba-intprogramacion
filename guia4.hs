@@ -84,3 +84,9 @@ esCapicua n
 
 sacarPrimerDigito :: Integer -> Integer
 sacarPrimerDigito n = mod n (10 ^ ((cantidadDigitos n) - 1))
+
+-- EJERCICIO 10a
+f1 :: Integer -> Integer
+f1 0 = 1 -- 2^0 = 1
+f1 1 = 3 -- 2^0 + 2^1 = 1 + 2 = 3
+f1 n = 2^n + f1 (n-1)
