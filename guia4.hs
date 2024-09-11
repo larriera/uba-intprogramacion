@@ -1,4 +1,5 @@
 -- 20240909: 1, 2, 7, 3, 4
+-- 20240911: 5, 6
 
 
 
@@ -62,6 +63,13 @@ cantidadDigitos :: Integer -> Integer
 cantidadDigitos n
     | n < 10 = 1
     | otherwise = cantidadDigitos (div n 10) + 1
+
+-- EJERCICIO 8
+-- precond: n>0
+sumaDigitos :: Integer -> Integer
+sumaDigitos n
+    | n < 10 = n
+    | otherwise = sumaDigitos (div n 10) + mod n 10
 
 -- EJERCICIO 9
 -- precond: n >=0
