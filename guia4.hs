@@ -90,3 +90,9 @@ f1 :: Integer -> Integer
 f1 0 = 1 -- 2^0 = 1
 f1 1 = 3 -- 2^0 + 2^1 = 1 + 2 = 3
 f1 n = 2^n + f1 (n-1)
+
+-- EJERCICIO 10b
+f2 :: Integer -> Double -> Double
+f2 n q
+    | n == 1 = q -- q^1 = q
+    | otherwise = q^^n + f2 (n-1) q
