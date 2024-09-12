@@ -130,3 +130,14 @@ raizDe2Aprox n = sucesionEj12 n - 1
 sucesionEj12 :: Integer -> Float
 sucesionEj12 1 = 2
 sucesionEj12 n = 2 + (1 / sucesionEj12 (n-1))
+
+-- EJERCICIO 13
+ej13 :: Integer -> Integer -> Integer
+ej13 n m
+    | n == 1 = sumaPotenciaInt m n
+    | otherwise = sumaPotenciaInt m n + ej13 (n-1) m
+
+sumaPotenciaInt :: Integer -> Integer -> Integer
+sumaPotenciaInt n q
+    | n == 1 = q
+    | otherwise = q^n + sumaPotenciaInt (n-1) q
