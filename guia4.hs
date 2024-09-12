@@ -109,3 +109,12 @@ f4 n q
     | n == 1 = q + q^^2
     | otherwise = f3 n q - f2 n q + q^^n
 
+-- EJERCICIO 11a
+eAprox :: Integer -> Float
+eAprox 1 = 2 -- 1/0! + 1/1! = 1 + 1 = 2
+eAprox n = (1 / fromIntegral (factorial n)) + eAprox (n-1)
+
+factorial :: Integer -> Integer
+factorial 0 = 1
+factorial 1 = 1
+factorial n = n * factorial (n-1)
