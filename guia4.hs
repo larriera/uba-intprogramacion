@@ -134,10 +134,18 @@ sucesionEj12 n = 2 + (1 / sucesionEj12 (n-1))
 -- EJERCICIO 13
 ej13 :: Integer -> Integer -> Integer
 ej13 n m
-    | n == 1 = sumaPotenciaInt m n
-    | otherwise = sumaPotenciaInt m n + ej13 (n-1) m
+    | n == 1 = sumaPotenciaQ m n
+    | otherwise = sumaPotenciaQ m n + ej13 (n-1) m
 
-sumaPotenciaInt :: Integer -> Integer -> Integer
-sumaPotenciaInt n q
+sumaPotenciaQ :: Integer -> Integer -> Integer --como f2 pero con enteros
+sumaPotenciaQ n q
     | n == 1 = q
-    | otherwise = q^n + sumaPotenciaInt (n-1) q
+    | otherwise = q^n + sumaPotenciaQ (n-1) q
+
+-- EJERCICIO 14
+-- (((ejercicio no resuelto)))
+sumaPotencias :: Integer -> Integer -> Integer -> Integer
+sumaPotencias q 1 1 = q^2
+sumaPotencias q 1 m = sumaPotenciaQ (m+1) q - q -- a+b = {1+1, ..., 1+(m-1), 1+m}
+sumaPotencias q n 1 = sumaPotenciaQ (n+1) q - q -- a+b = {1+1, ..., (n-1)+1, n+1}
+sumaPotencias q n m = q^(n+m) + sumaPotencias q (n-1) m
