@@ -122,3 +122,11 @@ factorial n = n * factorial (n-1)
 -- EJERCICIO 11b
 e :: Float
 e = eAprox 10
+
+-- EJERCICIO 12
+raizDe2Aprox :: Integer -> Float
+raizDe2Aprox n = sucesionEj12 n - 1
+
+sucesionEj12 :: Integer -> Float
+sucesionEj12 1 = 2
+sucesionEj12 n = 2 + (1 / sucesionEj12 (n-1))
