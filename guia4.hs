@@ -102,3 +102,10 @@ f3 :: Integer -> Float -> Float
 f3 n q
     | n == 1 = q -- q^1 = q
     | otherwise = q^^(2*n) + f2 ((2*n)-1) q
+
+-- EJERCICIO 10d
+f4 :: Integer -> Float -> Float
+f4 n q
+    | n == 1 = q + q^^2
+    | otherwise = f3 n q - f2 n q + q^^n
+
