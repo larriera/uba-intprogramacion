@@ -150,3 +150,12 @@ sumaPotencias q n m = sumaTerminoExterno q n m + sumaPotencias q (n-1) m -- va b
 sumaTerminoExterno :: Integer -> Integer -> Integer -> Integer -- esta función es la sumatoria de todos los q^(n+b) tal que 1<=b<=m (n es FIJO)
 sumaTerminoExterno _ _ 0 = 0 -- cuando (m-1) == 0, entonces llegó al caso base y termina la recursión
 sumaTerminoExterno q n m = q^(n+m) + sumaTerminoExterno q n (m-1) -- q^(n+m) + q^(n+m-1) + ... + q^(n+2) + q^(n+1)
+
+-- EJERCICIO 15
+sumaRacionales :: Integer -> Integer -> Float
+sumaRacionales 0 _ = 0
+sumaRacionales n m = sumaRacionalesExt n m + sumaRacionales (n-1) m
+
+sumaRacionalesExt :: Integer -> Integer -> Float --sumatoria de todos los n/b tal que 1<=b<=m (n fijo)
+sumaRacionalesExt _ 0 = 0
+sumaRacionalesExt n m = fromIntegral n / fromIntegral m + sumaRacionalesExt n (m-1)
