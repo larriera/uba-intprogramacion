@@ -161,6 +161,7 @@ sumaRacionalesExt _ 0 = 0
 sumaRacionalesExt n m = fromIntegral n / fromIntegral m + sumaRacionalesExt n (m-1)
 
 -- EJERCICIO 16a
+-- precond: n>1
 menorDivisor :: Integer -> Integer
 menorDivisor n = menorDivisorDesde2 n 2
 
@@ -180,3 +181,14 @@ sonCoprimos n m = maxComunDivisor n m == 1
 maxComunDivisor :: Integer -> Integer -> Integer --algoritmo de euclides para calcular mcm
 maxComunDivisor n 0 = n
 maxComunDivisor n m = maxComunDivisor m (mod n m)
+
+-- EJERCICIO 16d
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo 1 = 2
+nEsimoPrimo n = primerPrimo (nEsimoPrimo (n-1) + 1)
+
+
+primerPrimo :: Integer -> Integer -- n>= 2
+primerPrimo n
+    | (esPrimo n == True) = n
+    | otherwise = primerPrimo (n+1)
