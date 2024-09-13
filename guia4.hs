@@ -191,3 +191,14 @@ primerPrimo :: Integer -> Integer -- n>= 2 - primer primo después de n (inclusi
 primerPrimo n
     | (esPrimo n == True) = n
     | otherwise = primerPrimo (n+1)
+
+-- EJERCICIO 17
+esFibonacci :: Integer -> Bool
+esFibonacci 1 = True
+esFibonacci n = fibonacciDesde3 n 3
+
+fibonacciDesde3 :: Integer -> Integer -> Bool
+fibonacciDesde3 n k
+    | (fibonacci k) == n = True
+    | (fibonacci k) > n = False
+    | otherwise = fibonacciDesde3 n (k+1)
