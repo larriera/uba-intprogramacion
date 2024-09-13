@@ -143,9 +143,10 @@ sumaPotenciaQ n q
     | otherwise = q^n + sumaPotenciaQ (n-1) q
 
 -- EJERCICIO 14
--- (((ejercicio no resuelto)))
 sumaPotencias :: Integer -> Integer -> Integer -> Integer
-sumaPotencias q 1 1 = q^2
-sumaPotencias q 1 m = sumaPotenciaQ (m+1) q - q -- a+b = {1+1, ..., 1+(m-1), 1+m}
-sumaPotencias q n 1 = sumaPotenciaQ (n+1) q - q -- a+b = {1+1, ..., (n-1)+1, n+1}
-sumaPotencias q n m = q^(n+m) + sumaPotencias q (n-1) m
+sumaPotencias _ 0 _ = 0 -- cuando (n-1) == 0, entonces llegó al caso base y termina la recursión
+sumaPotencias q n m = sumaTerminoExterno q n m + sumaPotencias q (n-1) m -- va bajando el n hasta llegar a 1
+
+sumaTerminoExterno :: Integer -> Integer -> Integer -> Integer -- esta función es la sumatoria de todos los q^(n+b) tal que 1<=b<=m (n es FIJO)
+sumaTerminoExterno _ _ 0 = 0 -- cuando (m-1) == 0, entonces llegó al caso base y termina la recursión
+sumaTerminoExterno q n m = q^(n+m) + sumaTerminoExterno q n (m-1) -- q^(n+m) + q^(n+m-1) + ... + q^(n+2) + q^(n+1)
