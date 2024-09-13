@@ -172,3 +172,11 @@ menorDivisorDesde2 n k
 -- EJERCICIO 16b
 esPrimo :: Integer -> Bool
 esPrimo n = (menorDivisor n) == n
+
+-- EJERCICIO 16c
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos n m = maxComunDivisor n m == 1
+
+maxComunDivisor :: Integer -> Integer -> Integer --algoritmo de euclides para calcular mcm
+maxComunDivisor n 0 = n
+maxComunDivisor n m = maxComunDivisor m (mod n m)
