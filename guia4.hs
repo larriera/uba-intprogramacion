@@ -168,3 +168,7 @@ menorDivisorDesde2 :: Integer -> Integer -> Integer
 menorDivisorDesde2 n k
     | mod n k == 0 = k -- si n dividido k da resto 0, entonces k es divisor
     | otherwise = menorDivisorDesde2 n (k+1) -- va probando con k, k+1, ..., n (y ahi siempre termina pues mod n n == 0)
+
+-- EJERCICIO 16b
+esPrimo :: Integer -> Bool
+esPrimo n = (menorDivisor n) == n
