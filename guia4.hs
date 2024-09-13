@@ -159,3 +159,12 @@ sumaRacionales n m = sumaRacionalesExt n m + sumaRacionales (n-1) m
 sumaRacionalesExt :: Integer -> Integer -> Float --sumatoria de todos los n/b tal que 1<=b<=m (n fijo)
 sumaRacionalesExt _ 0 = 0
 sumaRacionalesExt n m = fromIntegral n / fromIntegral m + sumaRacionalesExt n (m-1)
+
+-- EJERCICIO 16a
+menorDivisor :: Integer -> Integer
+menorDivisor n = menorDivisorDesde2 n 2
+
+menorDivisorDesde2 :: Integer -> Integer -> Integer
+menorDivisorDesde2 n k
+    | mod n k == 0 = k -- si n dividido k da resto 0, entonces k es divisor
+    | otherwise = menorDivisorDesde2 n (k+1) -- va probando con k, k+1, ..., n (y ahi siempre termina pues mod n n == 0)
