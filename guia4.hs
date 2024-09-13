@@ -185,10 +185,9 @@ maxComunDivisor n m = maxComunDivisor m (mod n m)
 -- EJERCICIO 16d
 nEsimoPrimo :: Integer -> Integer
 nEsimoPrimo 1 = 2
-nEsimoPrimo n = primerPrimo (nEsimoPrimo (n-1) + 1)
+nEsimoPrimo n = primerPrimo (nEsimoPrimo (n-1) + 1) -- va para atrás hasta llegar al primer número primo (2), y suma +1 para buscar los siguientes hasta llegar al enésimo
 
-
-primerPrimo :: Integer -> Integer -- n>= 2
+primerPrimo :: Integer -> Integer -- n>= 2 - primer primo después de n (inclusivo)
 primerPrimo n
     | (esPrimo n == True) = n
     | otherwise = primerPrimo (n+1)
