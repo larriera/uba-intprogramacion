@@ -225,3 +225,11 @@ tieneDigitoPar n
     | n == 0 = False
     | mod n 2 == 0 = True
     | otherwise = tieneDigitoPar (div n 10)
+
+-- EJERCICIO 19
+esSumaInicialDePrimos :: Integer -> Integer -> Bool
+esSumaInicialDePrimos n m = n == sumaInicialPrimos m
+
+sumaInicialPrimos :: Integer -> Integer
+sumaInicialPrimos 1 = 2
+sumaInicialPrimos n = nEsimoPrimo n + sumaInicialPrimos (n-1)
