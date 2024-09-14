@@ -202,3 +202,26 @@ fibonacciDesde3 n k
     | (fibonacci k) == n = True
     | (fibonacci k) > n = False
     | otherwise = fibonacciDesde3 n (k+1)
+
+-- EJERCICIO 18
+mayorDigitoPar :: Integer -> Integer
+mayorDigitoPar n
+    | (tieneDigitoPar n) == False = -1
+    | n < 10 = n
+    | n < 100 = parMayor ultimoDigito sacarUltimo
+    | otherwise = parMayor ultimoDigito (mayorDigitoPar sacarUltimo)
+    where ultimoDigito = mod n 10
+          sacarUltimo = div n 10
+
+parMayor :: Integer -> Integer -> Integer
+parMayor n m
+    | mod m 2 /= 0 = n
+    | mod n 2 /= 0 = m
+    | n >= m = n
+    | otherwise = m
+
+tieneDigitoPar :: Integer -> Bool -- n>=1
+tieneDigitoPar n
+    | n == 0 = False
+    | mod n 2 == 0 = True
+    | otherwise = tieneDigitoPar (div n 10)
