@@ -1,0 +1,74 @@
+-- 20240918: 2.5, 1.1, 1.2, 3.3, 3.9, 1.3, 1.4, 2.1, 2.2
+
+-- EJERCICIO 1.1
+longitud :: [t] -> Integer
+longitud [] = 0
+longitud (x:xs) = 1 + longitud xs
+
+-- EJERCICIO 1.2
+-- precond: (x:xs) tiene al menos 1 elemento
+ultimo :: [t] -> t
+ultimo (x:xs)
+    | longitud xs == 0 = x
+    | otherwise = ultimo xs
+
+-- EJERCICIO 1.3
+-- precond: (x:xs) tiene al menos 1 elemento
+principio :: (Eq t) => [t] -> [t]
+principio (x:[]) = []
+principio (x:y:xs) = quitar (ultimo (x:y:xs)) (x:y:xs)
+
+-- EJERCICIO 1.4
+reverso :: [t] -> [t]
+reverso [] = []
+reverso (x:[]) = [x]
+reverso (x:y:xs) = reverso (y:xs) ++ [x]
+
+-- EJERCICIO 2.1
+pertenece :: (Eq t) => t -> [t] -> Bool
+pertenece e [] = False
+pertenece e (x:[]) = e == x
+pertenece e (x:y:xs) = (e == x)||(pertenece e (y:xs))
+
+-- EJERCICIO 2.2
+todosIguales :: (Eq t) => [t] -> Bool
+todosIguales [] = False
+todosIguales (x:[]) = True
+todosIguales (x:y:xs) = (x == y)&&(todosIguales (y:xs))
+
+-- EJERCICIO 2.5
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar _ [] = []
+quitar elem (x:xs)
+    | elem == x = xs
+    | otherwise = x:(quitar elem xs)
+
+-- EJERCICIO 3.3
+-- precond: (x:xs) tiene al menos 1 elemento
+maximo :: [Integer] -> Integer
+maximo (x:[]) = x -- caso para lista de 1 elem.
+maximo (x:y:xs) -- esto es equiv. a [x,y]++xs donde xs es una lista que puede ser vacia => este es el caso con minimo 2 elem.
+    | x > y = maximo (x:xs)
+    | otherwise = maximo (y:xs)
+
+mayorEnPar :: Integer -> Integer -> Integer
+mayorEnPar n m
+    | n >= m = n
+    | otherwise = m
+
+-- EJERCICIO 3.9
+ordenar :: [Integer] -> [Integer]
+ordenar [] = []
+ordenar (x:[]) = x:[]
+ordenar (x:y:xs) = ordenar (quitar max lista)++[max]
+    where lista = (x:y:xs)
+          max = maximo lista
+
+-- EJERCICIO 6
+{--
+type Texto = [Char]
+type Nombre = Texto
+type Telefono = Texto
+type Contacto = (Nombre, Telefono)
+type ContactosTel = [Contacto]
+--}
