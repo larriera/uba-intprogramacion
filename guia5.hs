@@ -139,6 +139,16 @@ sumarElUltimo [] = []
 sumarElUltimo (x:[]) = [x+x]
 sumarElUltimo (x:y:xs) = sumarN (ultimo (x:y:xs)) (x:y:xs)
 
+-- EJERCICIO 3.7
+pares :: [Integer] -> [Integer]
+pares [] = []
+pares (x:[])
+    | mod x 2 == 0 = [x]
+    | otherwise = []
+pares (x:y:xs)
+    | mod x 2 == 0 = x:(pares (y:xs))
+    | otherwise = pares (y:xs)
+
 -- EJERCICIO 3.9
 ordenar :: [Integer] -> [Integer]
 ordenar [] = []
