@@ -170,7 +170,13 @@ ordenar (x:y:xs) = ordenar (quitar max lista)++[max]
           max = maximo lista
 
 -- EJERCICIO 4a
-
+sacarBlancosRepetidos :: Texto -> Texto
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos (x:[]) = [x]
+sacarBlancosRepetidos (x:y:xs)
+    | x == blanco && y == blanco = x:(sacarBlancosRepetidos xs)
+    | otherwise = x:(sacarBlancosRepetidos (y:xs))
+        where blanco = ' ' -- observación: ' ' :: Char / " " :: String   (https://stackoverflow.com/a/14948777)
 
 -- EJERCICIO 6
 {--
