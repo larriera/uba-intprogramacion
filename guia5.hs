@@ -73,6 +73,21 @@ eliminarRepetidos (x:[]) = [x]
 eliminarRepetidos (x:y:xs) = x : (eliminarRepetidos tailSinX)
     where tailSinX = quitarTodos x (y:xs)
 
+-- EJERCICIO 2.8
+mismosElementos :: (Eq t) => [t] -> [t] -> Bool
+mismosElementos [] [] = True
+mismosElementos (x:[]) (y:[]) = x == y
+mismosElementos (x:y:xs) (v:w:vs) = (listaContenida (x:y:xs) (v:w:vs))&&(listaContenida (v:w:vs) (x:y:xs))
+
+listaContenida :: (Eq t) => [t] -> [t] -> Bool -- chequea si los elementos de una lista están contenidos en otra (sin repeticiones)
+listaContenida lista1 lista2
+    | lista1 == [] && lista2 == [] = True
+    | lista1 == [] || lista2 == [] = False -- lista2 es vacía pero lista1 tiene al menos 1 elemento (no se cumple que esté contenida)
+    | longitud sinRepL1 == 1 = pertenece (head sinRepL1) sinRepL2 --caso base
+    | otherwise = (pertenece (head sinRepL1) sinRepL2)&&(listaContenida (tail sinRepL1) sinRepL2)
+        where sinRepL1 = eliminarRepetidos lista1
+              sinRepL2 = eliminarRepetidos lista2
+
 -- EJERCICIO 3.3
 -- precond: (x:xs) tiene al menos 1 elemento
 maximo :: [Integer] -> Integer
