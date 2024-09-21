@@ -100,6 +100,12 @@ sumatoria [] = 0
 sumatoria (x:[]) = x
 sumatoria (x:y:xs) = x + sumatoria (y:xs)
 
+-- EJERCICIO 3.2
+productoria :: [Integer] -> Integer
+productoria [] = 0
+productoria (x:[]) = x
+productoria (x:y:xs) = x * productoria (y:xs)
+
 -- EJERCICIO 3.3
 -- precond: (x:xs) tiene al menos 1 elemento
 maximo :: [Integer] -> Integer
