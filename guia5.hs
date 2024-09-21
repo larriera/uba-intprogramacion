@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -Wno-x-partial #-} --ocultar advertencia de que head y tail (usadas en ej 2.8) son funciones parciales (cubrí con guardas los casos en los que podrían fallar)
 -- 20240918: 2.5, 1.1, 1.2, 3.3, 3.9, 1.3, 1.4, 2.1, 2.2
 
+type Texto = [Char]
+
 -- EJERCICIO 1.1
 longitud :: [t] -> Integer
 longitud [] = 0
@@ -167,9 +169,11 @@ ordenar (x:y:xs) = ordenar (quitar max lista)++[max]
     where lista = (x:y:xs)
           max = maximo lista
 
+-- EJERCICIO 4a
+
+
 -- EJERCICIO 6
 {--
-type Texto = [Char]
 type Nombre = Texto
 type Telefono = Texto
 type Contacto = (Nombre, Telefono)
