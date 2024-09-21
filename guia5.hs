@@ -44,6 +44,11 @@ todosDistintos (x:y:xs)
     | pertenece x (y:xs) = False -- ¿está el primer elemento en el resto de la lista?
     | otherwise = todosDistintos (y:xs) -- descarto el primero y chequeo si el siguiente elemento está en el resto
 
+-- EJERCICIO 2.4
+hayRepetidos :: (Eq t) => [t] -> Bool
+hayRepetidos [] = False
+hayRepetidos lista = not (todosDistintos lista) -- todosDistintos revisa lo que necesito (repeticiones de elementos), pero me da el resultado contrario
+
 -- EJERCICIO 2.5
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar _ [] = []
