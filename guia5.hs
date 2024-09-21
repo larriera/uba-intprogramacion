@@ -199,6 +199,28 @@ contarApariciones elem (x:y:xs)
     | x == elem = 1 + contarApariciones elem (y:xs)
     | otherwise = contarApariciones elem (y:xs)
 
+-- EJERCICIO 4c
+palabras :: Texto -> [Texto]
+palabras [] = []
+palabras (x:[])
+    | x /= ' ' = [[x]]
+    | otherwise = []
+palabras (x:y:xs)
+    | x /= ' ' = (hastaPrimerSep ' ' (x:y:xs)):[] ++ palabras (empezarEnSep ' ' (y:xs))
+    | otherwise = palabras (y:xs)
+
+hastaPrimerSep :: (Eq t) => t -> [t] ->  [t]
+hastaPrimerSep _ [] = []
+hastaPrimerSep sep (x:xs)
+    | x == sep = []
+    | otherwise = x : hastaPrimerSep sep xs
+
+empezarEnSep :: (Eq t) => t -> [t] -> [t]
+empezarEnSep _ [] = []
+empezarEnSep sep (x:xs)
+    | x == sep = xs
+    | otherwise = empezarEnSep sep xs
+
 -- EJERCICIO 6
 {--
 type Nombre = Texto
