@@ -174,7 +174,7 @@ sacarBlancosRepetidos :: Texto -> Texto
 sacarBlancosRepetidos [] = []
 sacarBlancosRepetidos (x:[]) = [x]
 sacarBlancosRepetidos (x:y:xs)
-    | x == blanco && y == blanco = x:(sacarBlancosRepetidos xs)
+    | x == blanco && y == blanco = sacarBlancosRepetidos (y:xs)
     | otherwise = x:(sacarBlancosRepetidos (y:xs))
         where blanco = ' ' -- observación: ' ' :: Char / " " :: String = [Char]   (https://stackoverflow.com/a/14948777)
 
