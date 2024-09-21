@@ -179,14 +179,26 @@ sacarBlancosRepetidos (x:y:xs)
         where blanco = ' ' -- observación: ' ' :: Char / " " :: String = [Char]   (https://stackoverflow.com/a/14948777)
 
 -- EJERCICIO 4b
---contarPalabras :: Texto -> Integer
+-- precond: texto /= [' ']
+contarPalabras :: Texto -> Integer
+contarPalabras [] = 0
+contarPalabras (x:[])
+    | x == ' ' = 0
+    | otherwise = 1
+contarPalabras (x:y:xs)
+    | head txtNormal == ' ' = espacios - 1
+    | otherwise = espacios
+        where txtNormal = sacarBlancosRepetidos ((x:y:xs)++ " ") -- agrego un espacio para que no se rompa en el caso head txtNormal == ' '
+              espacios = (contarApariciones ' ' txtNormal)
 
-sacarBlancosPrincipio :: Texto -> Texto
-sacarBlancosPrincipio [] = []
-sacarBlancosPrincipio (x:[]) = [x]
-sacarBlancosPrincipio (x:y:xs)
-    | x /= ' ' = (x:y:xs)
-    | otherwise = sacarBlancosPrincipio (y:xs)
+contarApariciones :: (Eq t) => t -> [t] -> Integer
+contarApariciones _ [] = 0
+contarApariciones elem (x:[])
+    | x == elem = 1
+    | otherwise = 0
+contarApariciones elem (x:y:xs)
+    | x == elem = 1 + contarApariciones elem (y:xs)
+    | otherwise = contarApariciones elem (y:xs)
 
 -- EJERCICIO 6
 {--
