@@ -36,6 +36,14 @@ todosIguales [] = False
 todosIguales (x:[]) = True
 todosIguales (x:y:xs) = (x == y)&&(todosIguales (y:xs))
 
+-- EJERCICIO 2.3
+todosDistintos :: (Eq t) => [t] -> Bool
+todosDistintos [] = False
+todosDistintos (x:[]) = True -- caso base
+todosDistintos (x:y:xs)
+    | pertenece x (y:xs) = False -- ¿está el primer elemento en el resto de la lista?
+    | otherwise = todosDistintos (y:xs) -- descarto el primero y chequeo si el siguiente elemento está en el resto
+
 -- EJERCICIO 2.5
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar _ [] = []
