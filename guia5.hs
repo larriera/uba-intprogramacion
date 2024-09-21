@@ -56,6 +56,16 @@ quitar elem (x:xs)
     | elem == x = xs
     | otherwise = x:(quitar elem xs)
 
+-- EJERCICIO 2.6
+quitarTodos :: (Eq t ) => t -> [t] -> [t]
+quitarTodos _ [] = []
+quitarTodos e (x:[])
+    | e == x = []
+    | otherwise = (x:[])
+quitarTodos e (x:y:xs)
+    | e == x = quitarTodos e (y:xs)
+    | otherwise = x:(quitarTodos e (y:xs))
+
 -- EJERCICIO 3.3
 -- precond: (x:xs) tiene al menos 1 elemento
 maximo :: [Integer] -> Integer
