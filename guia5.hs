@@ -133,6 +133,12 @@ sumarElPrimero [] = []
 sumarElPrimero (x:[]) = [x+x]
 sumarElPrimero (x:y:xs) = sumarN x (x:y:xs)
 
+-- EJERCICIO 3.6
+sumarElUltimo :: [Integer] -> [Integer]
+sumarElUltimo [] = []
+sumarElUltimo (x:[]) = [x+x]
+sumarElUltimo (x:y:xs) = sumarN (ultimo (x:y:xs)) (x:y:xs)
+
 -- EJERCICIO 3.9
 ordenar :: [Integer] -> [Integer]
 ordenar [] = []
