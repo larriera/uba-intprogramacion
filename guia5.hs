@@ -88,6 +88,12 @@ listaContenida lista1 lista2
         where sinRepL1 = eliminarRepetidos lista1
               sinRepL2 = eliminarRepetidos lista2
 
+-- EJERCICIO 2.9
+capicua :: (Eq t) => [t] -> Bool
+capicua [] = True
+capicua (x:[]) = True
+capicua (x:y:xs) = (x:y:xs) == reverso (x:y:xs)
+
 -- EJERCICIO 3.3
 -- precond: (x:xs) tiene al menos 1 elemento
 maximo :: [Integer] -> Integer
