@@ -127,6 +127,12 @@ sumarN 0 lista = lista
 sumarN n (x:[]) = [x+n]
 sumarN n (x:y:xs) = (x+n):(sumarN n (y:xs))
 
+-- EJERCICIO 3.5
+sumarElPrimero :: [Integer] -> [Integer]
+sumarElPrimero [] = []
+sumarElPrimero (x:[]) = [x+x]
+sumarElPrimero (x:y:xs) = sumarN x (x:y:xs)
+
 -- EJERCICIO 3.9
 ordenar :: [Integer] -> [Integer]
 ordenar [] = []
