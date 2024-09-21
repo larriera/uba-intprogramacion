@@ -179,7 +179,6 @@ sacarBlancosRepetidos (x:y:xs)
         where blanco = ' ' -- observación: ' ' :: Char / " " :: String = [Char]   (https://stackoverflow.com/a/14948777)
 
 -- EJERCICIO 4b
--- precond: texto /= [' ']
 contarPalabras :: Texto -> Integer
 contarPalabras [] = 0
 contarPalabras (x:[])
