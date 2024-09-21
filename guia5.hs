@@ -176,7 +176,17 @@ sacarBlancosRepetidos (x:[]) = [x]
 sacarBlancosRepetidos (x:y:xs)
     | x == blanco && y == blanco = x:(sacarBlancosRepetidos xs)
     | otherwise = x:(sacarBlancosRepetidos (y:xs))
-        where blanco = ' ' -- observación: ' ' :: Char / " " :: String   (https://stackoverflow.com/a/14948777)
+        where blanco = ' ' -- observación: ' ' :: Char / " " :: String = [Char]   (https://stackoverflow.com/a/14948777)
+
+-- EJERCICIO 4b
+--contarPalabras :: Texto -> Integer
+
+sacarBlancosPrincipio :: Texto -> Texto
+sacarBlancosPrincipio [] = []
+sacarBlancosPrincipio (x:[]) = [x]
+sacarBlancosPrincipio (x:y:xs)
+    | x /= ' ' = (x:y:xs)
+    | otherwise = sacarBlancosPrincipio (y:xs)
 
 -- EJERCICIO 6
 {--
