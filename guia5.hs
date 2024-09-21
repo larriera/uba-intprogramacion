@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-x-partial #-} --ocultar advertencia de que head y tail (usadas en ej 2.8) son funciones parciales (cubrí con guardas los casos en los que podrían fallar)
 -- 20240918: 2.5, 1.1, 1.2, 3.3, 3.9, 1.3, 1.4, 2.1, 2.2
 
 -- EJERCICIO 1.1
@@ -118,6 +119,13 @@ mayorEnPar :: Integer -> Integer -> Integer
 mayorEnPar n m
     | n >= m = n
     | otherwise = m
+
+-- EJERCICIO 3.4
+sumarN :: Integer -> [Integer] -> [Integer]
+sumarN n [] = [n]
+sumarN 0 lista = lista
+sumarN n (x:[]) = [x+n]
+sumarN n (x:y:xs) = (x+n):(sumarN n (y:xs))
 
 -- EJERCICIO 3.9
 ordenar :: [Integer] -> [Integer]
