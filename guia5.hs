@@ -149,6 +149,16 @@ pares (x:y:xs)
     | mod x 2 == 0 = x:(pares (y:xs))
     | otherwise = pares (y:xs)
 
+-- EJERCICIO 3.8
+multiplosDeN :: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN n (x:[])
+    | mod x n == 0 = [x]
+    | otherwise = []
+multiplosDeN n (x:y:xs)
+    | mod x n == 0 = x:(multiplosDeN n (y:xs))
+    | otherwise = multiplosDeN n (y:xs)
+
 -- EJERCICIO 3.9
 ordenar :: [Integer] -> [Integer]
 ordenar [] = []
