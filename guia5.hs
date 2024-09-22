@@ -2,6 +2,10 @@
 -- 20240918: 2.5, 1.1, 1.2, 3.3, 3.9, 1.3, 1.4, 2.1, 2.2
 
 type Texto = [Char]
+type Nombre = Texto
+type Telefono = Texto
+type Contacto = (Nombre, Telefono)
+type ContactosTel = [Contacto]
 
 -- EJERCICIO 1.1
 longitud :: [t] -> Integer
@@ -277,9 +281,3 @@ sumaAcumuladaReves (x:[]) = [x]
 sumaAcumuladaReves (x:y:xs) = sumatoria (x:y:xs) : (sumaAcumuladaReves (y:xs))
 
 -- EJERCICIO 6
-{--
-type Nombre = Texto
-type Telefono = Texto
-type Contacto = (Nombre, Telefono)
-type ContactosTel = [Contacto]
---}
