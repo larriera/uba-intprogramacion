@@ -365,3 +365,21 @@ disponible (disp, _) = disp
 
 lockerDisponible :: Locker -> Disponibilidad
 lockerDisponible (_, est) = disponible est
+
+-- EJERCICIO 7.4
+ocuparLocker :: Identificacion -> MapaDeLockers -> MapaDeLockers
+ocuparLocker _ [] = []
+ocuparLocker id (x:[])
+    | id == idLocker x = []
+    | otherwise = [x]
+ocuparLocker id (x:y:xs)
+    | id == idLocker x = ((lockerOcupado x):y:xs)
+    | otherwise = x : (ocuparLocker id (y:xs))
+
+lockerOcupado :: Locker -> Locker
+lockerOcupado (id, est)
+    | lockerDisponible (id, est) = (id, cambiarDisp est)
+    | otherwise = (id, est)
+
+cambiarDisp :: Estado -> Estado
+cambiarDisp (disp, ubi) = (not disp, ubi)
