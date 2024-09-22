@@ -7,6 +7,13 @@ type Telefono = Texto
 type Contacto = (Nombre, Telefono)
 type ContactosTel = [Contacto]
 
+type Identificacion = Integer
+type Ubicacion = Texto
+type Estado = (Disponibilidad, Ubicacion)
+type Locker = (Identificacion, Estado)
+type MapaDeLockers = [Locker]
+type Disponibilidad = Bool
+
 -- EJERCICIO 1.1
 longitud :: [t] -> Integer
 longitud [] = 0
@@ -315,3 +322,4 @@ eliminarContacto nom (x:[])
 eliminarContacto nom (x:xs)
     | nom == elNombre x = xs
     | otherwise = x : (eliminarContacto nom xs)
+
