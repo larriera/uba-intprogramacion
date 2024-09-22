@@ -286,3 +286,11 @@ elNombre (nom, tel) = nom
 
 elTelefono :: Contacto -> Nombre
 elTelefono (nom, tel) = tel
+
+-- EJERCICIO 6a
+enLosContactos :: Nombre -> ContactosTel -> Bool
+enLosContactos _ [] = False
+enLosContactos nom (x:[]) = nom == elNombre x
+enLosContactos nom (x:y:xs)
+    | nom == elNombre x = True
+    | otherwise = enLosContactos nom (y:xs)
