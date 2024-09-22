@@ -221,6 +221,25 @@ empezarEnSep sep (x:xs)
     | x == sep = xs
     | otherwise = empezarEnSep sep xs
 
+-- EJERCICIO 4d
+-- aclaración: si existe más de una ocurrencia de palabra de longitud más larga, se devolverá la primera ocurrencia
+-- por ejemplo: palabraMasLarga "aaa bbb" devuelve "aaa"
+palabraMasLarga :: Texto -> Texto
+palabraMasLarga [] = []
+palabraMasLarga (x:xs) = listaMaxima (palabras (x:xs))
+
+listaMayor :: (Eq t) => [t] -> [t] -> [t]
+listaMayor lista1 lista2
+    | longitud lista1 >= longitud lista2 = lista1
+    | otherwise = lista2
+        
+listaMaxima :: (Eq t) => [[t]] -> [t]
+listaMaxima [] = []
+listaMaxima (x:[]) = x
+listaMaxima (x:y:xs)
+    | listaMayor x y == x = listaMaxima (x:xs)
+    | otherwise = listaMaxima (y:xs)
+
 -- EJERCICIO 6
 {--
 type Nombre = Texto
