@@ -294,3 +294,14 @@ enLosContactos nom (x:[]) = nom == elNombre x
 enLosContactos nom (x:y:xs)
     | nom == elNombre x = True
     | otherwise = enLosContactos nom (y:xs)
+
+-- EJERCICIO 6c
+-- asumo que los nombres de contacto son únicos y tienen a lo sumo 1 sola aparicion en la lista de contactos
+eliminarContacto :: Nombre -> ContactosTel -> ContactosTel
+eliminarContacto _ [] = []
+eliminarContacto nom (x:[])
+    | nom == elNombre x = []
+    | otherwise = [x]
+eliminarContacto nom (x:xs)
+    | nom == elNombre x = xs
+    | otherwise = x : (eliminarContacto nom xs)
