@@ -240,6 +240,11 @@ listaMaxima (x:y:xs)
     | listaMayor x y == x = listaMaxima (x:xs)
     | otherwise = listaMaxima (y:xs)
 
+-- EJERCICIO 4e
+aplanar :: [Texto] -> Texto
+aplanar [] = []
+aplanar (x:xs) = x ++ aplanar xs
+
 -- EJERCICIO 6
 {--
 type Nombre = Texto
