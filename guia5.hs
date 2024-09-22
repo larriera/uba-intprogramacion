@@ -281,3 +281,8 @@ sumaAcumuladaReves (x:[]) = [x]
 sumaAcumuladaReves (x:y:xs) = sumatoria (x:y:xs) : (sumaAcumuladaReves (y:xs))
 
 -- EJERCICIO 6
+elNombre :: Contacto -> Nombre
+elNombre (nom, tel) = nom
+
+elTelefono :: Contacto -> Nombre
+elTelefono (nom, tel) = tel
