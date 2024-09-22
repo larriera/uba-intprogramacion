@@ -246,7 +246,7 @@ aplanar [] = []
 aplanar (x:xs) = x ++ aplanar xs
 
 -- EJERCICIO 4f
-aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos :: [Texto] -> Texto
 aplanarConBlancos [] = []
 aplanarConBlancos (x:[]) = x
 aplanarConBlancos (x:xs) = x ++ " " ++ aplanarConBlancos xs
