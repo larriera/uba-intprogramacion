@@ -251,6 +251,17 @@ aplanarConBlancos [] = []
 aplanarConBlancos (x:[]) = x
 aplanarConBlancos (x:xs) = x ++ " " ++ aplanarConBlancos xs
 
+-- EJERCICIO 4g
+aplanarConNBlancos :: [Texto] -> Integer -> Texto
+aplanarConNBlancos _ 0 = []
+aplanarConNBlancos (x:[]) _ = x
+aplanarConNBlancos (x:xs) n = x ++ (textoNveces n " ") ++ aplanarConNBlancos xs n
+
+-- precond: n>0
+textoNveces :: Integer -> Texto -> Texto
+textoNveces 1 txt = txt
+textoNveces n txt = txt ++ textoNveces (n-1) txt
+
 -- EJERCICIO 6
 {--
 type Nombre = Texto
