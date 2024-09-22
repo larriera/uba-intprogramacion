@@ -98,7 +98,7 @@ capicua (x:[]) = True
 capicua (x:y:xs) = (x:y:xs) == reverso (x:y:xs)
 
 -- EJERCICIO 3.1
-sumatoria :: [Integer] -> Integer
+sumatoria :: (Num t) => [t] -> t
 sumatoria [] = 0
 sumatoria (x:[]) = x
 sumatoria (x:y:xs) = x + sumatoria (y:xs)
@@ -261,6 +261,13 @@ aplanarConNBlancos (x:xs) n = x ++ (textoNveces n " ") ++ aplanarConNBlancos xs 
 textoNveces :: Integer -> Texto -> Texto
 textoNveces 1 txt = txt
 textoNveces n txt = txt ++ textoNveces (n-1) txt
+
+-- EJERCICIO 5.1
+-- precond: todos los elementos de [t] son >0
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada [] = []
+sumaAcumulada (x:[]) = [x]
+sumaAcumulada (x:y:xs) = reverso (sumatoria (x:y:xs) : (sumaAcumulada (y:xs)))
 
 -- EJERCICIO 6
 {--
