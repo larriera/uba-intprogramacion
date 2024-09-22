@@ -245,6 +245,12 @@ aplanar :: [Texto] -> Texto
 aplanar [] = []
 aplanar (x:xs) = x ++ aplanar xs
 
+-- EJERCICIO 4f
+aplanarConBlancos :: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos (x:[]) = x
+aplanarConBlancos (x:xs) = x ++ " " ++ aplanarConBlancos xs
+
 -- EJERCICIO 6
 {--
 type Nombre = Texto
