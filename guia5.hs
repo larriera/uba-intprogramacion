@@ -295,6 +295,16 @@ enLosContactos nom (x:y:xs)
     | nom == elNombre x = True
     | otherwise = enLosContactos nom (y:xs)
 
+-- EJERCICIO 6b
+agregarContacto :: Contacto -> ContactosTel -> ContactosTel
+agregarContacto c [] = [c]
+agregarContacto c (x:[])
+    | elNombre c == elNombre x = [c]
+    | otherwise = x : [c]
+agregarContacto c (x:y:xs)
+    | elNombre c == elNombre x = (c:y:xs)
+    | otherwise = x : (agregarContacto c (y:xs))
+
 -- EJERCICIO 6c
 -- asumo que los nombres de contacto son únicos y tienen a lo sumo 1 sola aparicion en la lista de contactos
 eliminarContacto :: Nombre -> ContactosTel -> ContactosTel
