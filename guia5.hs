@@ -334,8 +334,18 @@ existeElLocker id (x:y:xs)
 idLocker :: Locker -> Identificacion
 idLocker (id, _) = id
 
-{--laUbicacion :: Estado -> Ubicacion
+-- EJERCICIO 7.2
+ubicacionDelLocker :: Identificacion -> MapaDeLockers -> Ubicacion
+ubicacionDelLocker _ [] = "Locker no existe"
+ubicacionDelLocker id (x:[])
+    | id == idLocker x = ubicacionLocker x
+    | otherwise = "Locker no existe"
+ubicacionDelLocker id (x:y:xs)
+    | id == idLocker x = ubicacionLocker x
+    | otherwise = ubicacionDelLocker id (y:xs)
+
+laUbicacion :: Estado -> Ubicacion
 laUbicacion (_, ubi) = ubi
 
 ubicacionLocker :: Locker -> Ubicacion
-ubicacionLocker (id, est) = laUbicacion est --}
+ubicacionLocker (id, est) = laUbicacion est
