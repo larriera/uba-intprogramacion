@@ -323,3 +323,19 @@ eliminarContacto nom (x:xs)
     | nom == elNombre x = xs
     | otherwise = x : (eliminarContacto nom xs)
 
+-- EJERCICIO 7.1
+existeElLocker :: Identificacion -> MapaDeLockers -> Bool
+existeElLocker _ [] = False
+existeElLocker id (x:[]) = id == (idLocker x)
+existeElLocker id (x:y:xs)
+    | id == (idLocker x) = True
+    | otherwise = existeElLocker id (y:xs)
+
+idLocker :: Locker -> Identificacion
+idLocker (id, _) = id
+
+{--laUbicacion :: Estado -> Ubicacion
+laUbicacion (_, ubi) = ubi
+
+ubicacionLocker :: Locker -> Ubicacion
+ubicacionLocker (id, est) = laUbicacion est --}
