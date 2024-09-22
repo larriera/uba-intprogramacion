@@ -267,7 +267,14 @@ textoNveces n txt = txt ++ textoNveces (n-1) txt
 sumaAcumulada :: (Num t) => [t] -> [t]
 sumaAcumulada [] = []
 sumaAcumulada (x:[]) = [x]
-sumaAcumulada (x:y:xs) = reverso (sumatoria (x:y:xs) : (sumaAcumulada (y:xs)))
+sumaAcumulada (x:y:xs) = reverso (sumaAcumuladaReves reves) -- conseguimos sumaAcumulada yendo de derecha a izquierda, y damos vuelta el orden del resultado para cumplir lo pedido
+    where reves = reverso (x:y:xs)
+
+-- sumaAcumulada, pero yendo de derecha a izquierda
+sumaAcumuladaReves :: (Num t) => [t] -> [t]
+sumaAcumuladaReves [] = []
+sumaAcumuladaReves (x:[]) = [x]
+sumaAcumuladaReves (x:y:xs) = sumatoria (x:y:xs) : (sumaAcumuladaReves (y:xs))
 
 -- EJERCICIO 6
 {--
