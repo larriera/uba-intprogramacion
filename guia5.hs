@@ -348,4 +348,20 @@ laUbicacion :: Estado -> Ubicacion
 laUbicacion (_, ubi) = ubi
 
 ubicacionLocker :: Locker -> Ubicacion
-ubicacionLocker (id, est) = laUbicacion est
+ubicacionLocker (_, est) = laUbicacion est
+
+-- EJERCICIO 7.3
+estaDisponibleElLocker :: Identificacion -> MapaDeLockers -> Bool
+estaDisponibleElLocker _ [] = False
+estaDisponibleElLocker id (x:[])
+    | id == idLocker x = lockerDisponible x
+    | otherwise = False
+estaDisponibleElLocker id (x:y:xs)
+    | id == idLocker x = lockerDisponible x
+    | otherwise = estaDisponibleElLocker id (y:xs)
+
+disponible :: Estado -> Disponibilidad
+disponible (disp, _) = disp
+
+lockerDisponible :: Locker -> Disponibilidad
+lockerDisponible (_, est) = disponible est
