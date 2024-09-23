@@ -323,6 +323,8 @@ eliminarContacto nom (x:xs)
     | nom == elNombre x = xs
     | otherwise = x : (eliminarContacto nom xs)
 
+-- EJERCICIO 7: asumo que las identificaciones de locker son unicas y tienen a lo sumo 1 sola aparicion en el mapa de lockers
+
 -- EJERCICIO 7.1
 existeElLocker :: Identificacion -> MapaDeLockers -> Bool
 existeElLocker _ [] = False
