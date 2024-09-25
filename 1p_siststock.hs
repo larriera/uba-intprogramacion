@@ -123,3 +123,11 @@ problema aplicarOferta (stock: seq⟨String × Z⟩, precios: seq⟨String × R�
     res[i]1 = precios[i]1 }
 }
 --}
+
+aplicarOferta :: [(String, Int)] -> [(String, Float)] -> [(String, Float)]
+aplicarOferta _ [] = []
+aplicarOferta stock (p:ps)
+    | stockDeProducto stock prod > 10 = (prod, enOferta) : (aplicarOferta stock ps)
+    | otherwise = p : (aplicarOferta stock ps)
+    where prod = fst p
+          enOferta = (snd p) * 0.80
