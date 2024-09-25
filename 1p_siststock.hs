@@ -62,7 +62,7 @@ y res = stock[i]1}
 }
 --}
 
--- stock de prueba: [("a", 8), ("b", 18), ("c", 0), ("d", 2)]
+-- stock de prueba: [("a", 8), ("b", 18), ("c", 1), ("d", 2)]
 
 stockDeProducto :: [(String, Int)] -> String -> Int
 stockDeProducto [] _ = 0
@@ -89,4 +89,18 @@ de cada producto que hay en stock}
 }
 --}
 
+-- precios de prueba: [("a",100),("b",150),("c",10),("d",500)]
+
 dineroEnStock :: [(String, Int)] -> [(String, Float)] -> Float
+dineroEnStock [] _ = 0
+dineroEnStock _ [] = 0
+dineroEnStock (s:sz) (p:ps) = stockS * precioS + dineroEnStock sz (p:ps)
+    where stockS = fromIntegral (snd s)
+          precioS = precioDeProducto (fst s) (p:ps)
+
+-- AUX: busca en una lista de tuplas (nombre, precio) el precio de un cierto producto
+precioDeProducto :: String -> [(String, Float)] -> Float
+precioDeProducto _ [] = -1
+precioDeProducto prod (x:xs)
+    | prod == fst x = snd x
+    | otherwise = precioDeProducto prod xs
