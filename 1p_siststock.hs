@@ -74,3 +74,19 @@ stockDeProducto ((nom, stock):y:xs) prod
     | otherwise = stockDeProducto (y:xs) prod
 
 ---------------------------------------------------------
+
+-- EJERCICIO 3
+
+{--
+problema dineroEnStock (stock: seq⟨String × Z⟩, precios: seq⟨String × R⟩ ) : R {
+requiere: {No hay productos repetidos en stock}
+requiere: {No hay productos repetidos en precios}
+requiere: {Todas las cantidades (segundas componentes) de stock son mayores a cero}
+requiere: {Todas las precios (segundas componentes) de precios son mayores a cero}
+requiere: {Todo producto de stock aparece en la lista de precios}
+asegura: {res es igual a la suma de los precios de todos los productos que est´an en stock multiplicado por la cantidad
+de cada producto que hay en stock}
+}
+--}
+
+dineroEnStock :: [(String, Int)] -> [(String, Float)] -> Float
