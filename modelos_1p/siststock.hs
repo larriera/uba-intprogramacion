@@ -1,3 +1,5 @@
+module SistStock where
+
 {--
 ======================================
 SISTEMA DE STOCK
