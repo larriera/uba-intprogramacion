@@ -10,3 +10,5 @@ testGenerarStock = test [
     "varios con repeticiones ordenadas" ~: (generarStock ["a","b","b","c"]) ~?= [("a",1),("b",2),("c",1)],
     "varios con repeticiones mezcladas" ~: (generarStock ["a","b","a","a","c","a","d","c"]) ~?= [("a",4),("b",1),("c",2),("d",1)],
 ]
+
+runEj1 = runTestTT testGenerarStock
