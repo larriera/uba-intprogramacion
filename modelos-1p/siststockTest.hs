@@ -13,6 +13,15 @@ testGenerarStock = test [
 
 runEj1 = runTestTT testGenerarStock
 
+-- EJERCICIO 2
+testStockDeProducto = test [
+    "stock vacio" ~: (stockDeProducto [] "a") ~?= 0,
+    "prod no esta en stock" ~: (stockDeProducto [("a",1)] "b") ~?= 0,
+    "prod esta en stock" ~: (stockDeProducto [("a",94),("b",13),("c",41)] "c") ~?= 41
+    ]
+
+runEj2 = runTestTT testStockDeProducto
+
 
 
 -- -- FUNCIONES PARA TESTING, NO BORRAR
