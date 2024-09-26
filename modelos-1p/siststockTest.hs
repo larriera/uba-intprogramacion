@@ -12,3 +12,24 @@ testGenerarStock = test [
     ]
 
 runEj1 = runTestTT testGenerarStock
+
+
+
+-- -- FUNCIONES PARA TESTING, NO BORRAR
+-- -- expectAny permite saber si el elemenot que devuelve la función es alguno de los esperados
+expectAny actual expected = elem actual expected ~? ("expected any of: " ++ show expected ++ "\n but got: " ++ show actual)
+
+
+quitar :: (Eq t) => t -> [t] -> [t]
+-- -- requiere x pertenece a y
+quitar x (y:ys)
+  | x == y = ys
+  | otherwise = y : quitar x ys
+
+incluido :: (Eq t) => [t] -> [t] -> Bool
+incluido [] l = True
+incluido (x:c) l = elem x l && incluido c (quitar x l)
+
+-- -- sonIguales permite ver que dos listas sean iguales si no importa el orden
+sonIguales :: (Eq t) => [t] -> [t] -> Bool
+sonIguales xs ys = incluido xs ys && incluido ys xs

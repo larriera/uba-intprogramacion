@@ -29,7 +29,6 @@ problema generarStock (productos: seq⟨String⟩) : seq⟨String × Z⟩ {
 }
 --}
 
--- tests: lista vacia, 1 elemento, todos elementos repetidos, todos elementos distintos, varios con repeticiones ordenadas, varios con repeticiones mezcladas
 generarStock :: [String] ->[(String, Int)]
 generarStock [] = []
 generarStock (x:[]) = [(x, 1)]
