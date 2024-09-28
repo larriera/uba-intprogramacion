@@ -47,3 +47,27 @@ type Fila = [Int]
 type Tablero = [Fila]
 type Posicion = (Int, Int) -- (n fila, m columna)
 type Camino = [Posicion]
+
+{--
+problema maximo (t: Tablero) : Z {
+requiere: {El tablero t es un tablero bien formado, es decir, la longitud de todas las filas es la misma, y tienen al
+menos un elemento}
+requiere: {Existe al menos una columna en el tablero t }
+requiere: {El tablero t no es vacio, todos los numeros del tablero son positivos, mayor estricto a 0}
+asegura: {res es igual al numero mas grande del tablero t}
+}
+--}
+
+maximo :: Tablero -> Int
+maximo [f] = numMax f
+maximo (f:g:fs)
+    | numMax f >= numMax g = maximo (f:fs)
+    | otherwise = maximo (g:fs)
+
+-- AUX: devuelve el numero mayor de una fila
+numMax :: Fila -> Int
+numMax [] = 0
+numMax [x] = x
+numMax (x:y:xs)
+    | x >= y = numMax (x:xs)
+    | otherwise = numMax (y:xs)
