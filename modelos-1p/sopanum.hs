@@ -71,3 +71,39 @@ numMax [x] = x
 numMax (x:y:xs)
     | x >= y = numMax (x:xs)
     | otherwise = numMax (y:xs)
+
+----------------------------------------------
+
+{--
+problema masRepetido (t: Tablero) : Z {
+requiere: {El tablero t es un tablero bien formado, es decir, la longitud de todas las filas es la misma, y tienen al
+menos un elemento}
+requiere: {Existe al menos una columna en el tablero t }
+requiere: {El tablero t no es vacio, todos los numeros del tablero son positivos, mayor estricto a 0}
+asegura: {res es igual al numero que mas veces aparece en un tablero t. Si hay empate devuelve cualquiera de ellos}
+}
+--}
+
+masRepetido :: Tablero -> Int
+masRepetido [f] = 0
+
+-- AUX: concatena todas las filas de un tablero en una sola lista
+aplanarTablero :: Tablero -> Fila
+aplanarTablero [] = []
+aplanarTablero [f] = f
+aplanarTablero (f:fs) = f ++ aplanarTablero fs
+
+-- AUX: cuenta las apariciones de un numero en una fila
+apariciones :: Fila -> Int -> Int
+apariciones [] _ = 0
+apariciones (x:xs) e
+    | x == e = 1 + apariciones xs e
+    | otherwise = apariciones xs e
+
+-- AUX: devuelve el numero que mas veces aparece en una fila
+masApariciones :: Fila -> Int
+masApariciones [] = (-1)
+masApariciones [x] = x
+masApariciones (x:y:xs)
+    | apariciones (x:y:xs) x >= apariciones (x:y:xs) y = masApariciones (x:xs)
+    | otherwise = masApariciones (y:xs)
