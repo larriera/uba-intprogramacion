@@ -126,11 +126,10 @@ las posiciones correspondientes en el camino.}
 }
 --}
 
-{--
 valoresDeCamino :: Tablero -> Camino -> [Int]
-valoresDeCamino t (c:[]) = encontrarNum [[6,1][2,2]] (1,1) 1
-valoresDeCamino t (c:cs) = (encontrarNum t c 1):(valoresDeCamino t cs)
---}
+valoresDeCamino t [] = []
+valoresDeCamino t [p] = [encontrarNum t p]
+valoresDeCamino t (p:ps) = (encontrarNum t p):(valoresDeCamino t ps)
 
 -- AUX: devuelve fila segun posicion
 posPorFila :: Tablero -> Posicion -> Int -> Fila
