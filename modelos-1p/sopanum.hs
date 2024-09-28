@@ -85,7 +85,9 @@ asegura: {res es igual al numero que mas veces aparece en un tablero t. Si hay e
 --}
 
 masRepetido :: Tablero -> Int
-masRepetido [f] = 0
+masRepetido [f] = masApariciones f
+masRepetido (f:fs) = masApariciones todosLosNum
+    where todosLosNum = aplanarTablero (f:fs)
 
 -- AUX: concatena todas las filas de un tablero en una sola lista
 aplanarTablero :: Tablero -> Fila
