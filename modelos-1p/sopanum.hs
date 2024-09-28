@@ -150,12 +150,3 @@ encontrarNum :: Tablero -> Posicion -> Int
 encontrarNum [] _ = -1
 encontrarNum (f:fs) (p1,p2) = posPorColumna (fila) (p1,p2) 1
     where fila = posPorFila (f:fs) (p1,p2) 1
-
-{--
--- AUX: devuelve el numero en cierta posicion de un tablero
-encontrarNum :: Tablero -> Posicion -> Int -> Int
-encontrarNum [] _ _ = -1
-encontrarNum (f:fs) (p1,p2) i -- al invocar, i=1
-    | p1 == i = posPorColumna f (p1,p2) 1 -- estamos en la fila p1
-    | otherwise = encontrarNum fs (p1,p2) (i+1) -- nos fijamos si la fila p1 es la siguiente
---}
