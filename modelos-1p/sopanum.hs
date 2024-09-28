@@ -40,5 +40,10 @@ Asumimos los siguientes renombres de tipos de datos en las especificaciones de l
 Fila = seq⟨Z⟩
 Tablero = seq⟨F ila⟩
 Posicion = Z × Z – Observacion: las posiciones son: (fila, columna)
-Camino = seq⟨P osicion⟩
+Camino = seq⟨Posicion⟩
 --}
+
+type Fila = [Int]
+type Tablero = [Fila]
+type Posicion = (Int, Int) -- (n fila, m columna)
+type Camino = [Posicion]
