@@ -109,3 +109,54 @@ masApariciones [x] = x
 masApariciones (x:y:xs)
     | apariciones (x:y:xs) x >= apariciones (x:y:xs) y = masApariciones (x:xs)
     | otherwise = masApariciones (y:xs)
+
+----------------------------------------------
+
+{--
+problema valoresDeCamino (t: Tablero, c: Camino) : seq⟨Z⟩ {
+requiere: {El tablero t es un tablero bien formado, es decir, la longitud de todas las filas es la misma, y tienen al
+menos un elemento}
+requiere: {Existe al menos una columna en el tablero t }
+requiere: {El tablero t no es vacio, todos los numeros del tablero son positivos, mayor estricto a 0}
+requiere: {El camino c es un camino valido, es decir, secuencia de posiciones adyacentes en la que solo es posible
+desplazarse hacia la posicion de la derecha o hacia abajo y todas las posiciones estan dentro de los limites del tablero
+t}
+asegura: {res es igual a la secuencia de numeros que estan en el camino c, ordenados de la misma forma que aparecen
+las posiciones correspondientes en el camino.}
+}
+--}
+
+{--
+valoresDeCamino :: Tablero -> Camino -> [Int]
+valoresDeCamino t (c:[]) = encontrarNum [[6,1][2,2]] (1,1) 1
+valoresDeCamino t (c:cs) = (encontrarNum t c 1):(valoresDeCamino t cs)
+--}
+
+-- AUX: devuelve fila segun posicion
+posPorFila :: Tablero -> Posicion -> Int -> Fila
+posPorFila [] _ _ = []
+posPorFila (f:fs) (p1,p2) i -- invocar con i=1
+    | p1 == i = f
+    | otherwise = posPorFila fs (p1,p2) (i+1)
+
+-- AUX: devuelve el numero en cierta posicion de una fila
+posPorColumna :: Fila -> Posicion -> Int -> Int
+posPorColumna [] _ _ = -1
+posPorColumna (x:xs) (p1,p2) i -- al invocar, i=1
+    | p2 == i = x -- estamos en la columna p2
+    | otherwise = posPorColumna xs (p1,p2) (i+1) -- nos fijamos si la columna p2 es la siguiente
+
+-- AUX: devuelve el numero en cierta posicion de un tablero
+encontrarNum :: Tablero -> Posicion -> Int
+encontrarNum [] _ = -1
+encontrarNum (f:fs) (p1,p2) = posPorColumna (fila) (p1,p2) 1
+    where fila = posPorFila (f:fs) (p1,p2) 1
+
+{--
+-- AUX: devuelve el numero en cierta posicion de un tablero
+encontrarNum :: Tablero -> Posicion -> Int -> Int
+encontrarNum [] _ _ = -1
+encontrarNum (f:fs) (p1,p2) i -- al invocar, i=1
+    | p1 == i = posPorColumna f (p1,p2) 1 -- estamos en la fila p1
+    | otherwise = encontrarNum fs (p1,p2) (i+1) -- nos fijamos si la fila p1 es la siguiente
+--}
