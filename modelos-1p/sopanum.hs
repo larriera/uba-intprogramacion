@@ -150,3 +150,36 @@ encontrarNum :: Tablero -> Posicion -> Int
 encontrarNum [] _ = -1
 encontrarNum (f:fs) (p1,p2) = posPorColumna (fila) (p1,p2) 1
     where fila = posPorFila (f:fs) (p1,p2) 1
+
+----------------------------------------------
+
+{--
+problema esCaminoFibo (s:seq⟨Z⟩, i : Z) : Bool {
+requiere: {La secuencia de numeros s es no vacia y esta compuesta por numeros positivos (mayor estricto que 0)
+que representan los valores de un camino en un tablero}
+requiere: {i ≥ 0}
+asegura: {res = true ⇔ los valores de s son la sucesion de Fibonacci inicializada con el numero pasado como
+parametro i}
+}
+
+Notas: En este ejercicio se pasa una secuencia de valores en lugar de un tablero y un camino para no generar dependencia
+con el ejercicio anterior. Recordemos que la sucesion de Fibonacci esta definida con la siguiente funcion recursiva:
+f(0) = 0
+f(1) = 1
+f(n) = f(n-1) + f(n-2) con n>1
+
+esCaminoFibo [1,1,2,3,5] 1 reduce a True.
+--}
+
+esCaminoFibo :: [Int] -> Int -> Bool
+esCaminoFibo [] _ = False
+esCaminoFibo [x] i = x == (fibo i) -- invocar con i=0
+esCaminoFibo (x:xs) i
+    | x == fibo i = esCaminoFibo xs (i+1)
+    | otherwise = False
+
+-- AUX: fibonacci
+fibo :: Int -> Int
+fibo 0 = 0
+fibo 1 = 1
+fibo n = fibo (n-1) + fibo (n-2)
