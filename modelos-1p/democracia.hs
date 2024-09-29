@@ -54,10 +54,41 @@ sumatoria (x:xs) = x + sumatoria xs
 division :: Int -> Int -> Float
 division a b = (fromIntegral a) / (fromIntegral b)
 
-
+-------------------------------------------------
 -- Ejercicio 2
+{--
+problema formulasInvalidas (formulas: seq⟨String x String⟩) : Bool {
+ requiere: {True}
+ asegura: {(res = true) <=> formulas contiene un candidato se propone para presidente y vicepresidente en la misma fórmula; 
+ o algún candidato se postula para presidente o vice en más de una fórmula }
+--}
+
 formulasInvalidas :: [(String, String)] -> Bool
-formulasInvalidas _ = True
+formulasInvalidas [] = True
+formulasInvalidas (f:fs) = hayFormIndividual (f:fs) || hayPanqueque (f:fs)
+
+-- AUX: evalua si hay alguna tupla con los componentes iguales
+hayFormIndividual :: (Eq t) => [(t,t)] -> Bool
+hayFormIndividual [] = False
+hayFormIndividual ((pr,vp):fs)
+    | pr == vp = True
+    | otherwise = hayFormIndividual fs
+
+-- AUX: evalua si hay algun elemento de las tuplas que se repita
+hayPanqueque :: (Eq t) => [(t,t)] -> Bool
+hayPanqueque [] = False
+hayPanqueque [(pr,vp)] = False -- asume NO hayFormIndividual
+hayPanqueque ((p1,v1):(p2,v2):fs)
+    | panqueque p1 || panqueque v1 = True
+    | otherwise = hayPanqueque ((p2,v2):fs)
+    where panqueque = estaEnTuplas ((p2,v2):fs)
+
+-- AUX: evalua si un elemento esta en alguna tupla de una lista de tuplas
+estaEnTuplas :: (Eq t) => [(t,t)] -> t -> Bool
+estaEnTuplas [] _ = False
+estaEnTuplas ((x,y):xs) e
+    | x == e || y == e = True
+    | otherwise = estaEnTuplas xs e
 
 
 -- Ejercicio 3
