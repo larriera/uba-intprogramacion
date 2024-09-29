@@ -43,6 +43,15 @@ problema porcentajeDeVotosAfirmativos (formulas: seq⟨String x String⟩,votos:
 porcentajeDeVotosAfirmativos :: [(String, String)] -> [Int] -> Int  -> Float
 porcentajeDeVotosAfirmativos _ _ _ = 0
 
+-- AUX: calcula la cantidad de votos no blancos
+cantVotosAfirmativos :: [Int] -> Int -> Int
+cantVotosAfirmativos (v:vs) votosTotal = votosTotal - (sumatoria (v:vs))
+
+-- AUX: suma todos los elementos de una lista de numeros
+sumatoria :: (Num t) => [t] -> t
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
 -- AUX: devuelve como float la division de dos enteros
 division :: Int -> Int -> Float
 division a b = (fromIntegral a) / (fromIntegral b)
