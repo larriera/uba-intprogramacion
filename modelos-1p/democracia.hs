@@ -28,3 +28,36 @@ García"), ("María Montero","Pablo Moreno")] y la lista de votos fuera [34, 56]
 la fórmula encabezada por María Montero obtuvo 56 votos, y la lista encabezada por Juan Pérez 
 obtuvo 34 votos.
 --}
+
+
+-- Ejercicio 1
+{--
+problema porcentajeDeVotosAfirmativos (formulas: seq⟨String x String⟩,votos:seq< Z >, cantTotalVotos: Z) : R {
+ requiere: {¬formulasInvalidas(formulas)}
+ requiere: {|formulas| = |votos|}
+ requiere: {Todos los elementos de votos son mayores o iguales a 0}
+ requiere: {La suma de todos los elementos de votos es menor o igual a cantTotalVotos}
+ asegura: {res es el porcentaje de votos no blancos (es decir, asociados a alguna de las fórmulas) sobre el total de votos emitidos}
+}
+--}
+porcentajeDeVotosAfirmativos :: [(String, String)] -> [Int] -> Int  -> Float
+porcentajeDeVotosAfirmativos _ _ _ = 0
+
+-- AUX: devuelve como float la division de dos enteros
+division :: Int -> Int -> Float
+division a b = (fromIntegral a) / (fromIntegral b)
+
+
+-- Ejercicio 2
+formulasInvalidas :: [(String, String)] -> Bool
+formulasInvalidas _ = True
+
+
+-- Ejercicio 3
+porcentajeDeVotos :: String -> [(String, String)] -> [Int] -> Float
+porcentajeDeVotos _ _ _ = 0.0
+
+
+-- Ejercicio 4
+menosVotado :: [(String, String)] -> [Int] -> String
+menosVotado _ _ = ""
