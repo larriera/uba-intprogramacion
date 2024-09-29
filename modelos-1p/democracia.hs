@@ -40,12 +40,10 @@ problema porcentajeDeVotosAfirmativos (formulas: seq⟨String x String⟩,votos:
  asegura: {res es el porcentaje de votos no blancos (es decir, asociados a alguna de las fórmulas) sobre el total de votos emitidos}
 }
 --}
-porcentajeDeVotosAfirmativos :: [(String, String)] -> [Int] -> Int  -> Float
-porcentajeDeVotosAfirmativos _ _ _ = 0
 
--- AUX: calcula la cantidad de votos no blancos
-cantVotosAfirmativos :: [Int] -> Int -> Int
-cantVotosAfirmativos (v:vs) votosTotal = votosTotal - (sumatoria (v:vs))
+porcentajeDeVotosAfirmativos :: [(String, String)] -> [Int] -> Int  -> Float
+porcentajeDeVotosAfirmativos _ (v:vs) vTotal = division (vAfirm * 100) vTotal
+    where vAfirm = sumatoria (v:vs)
 
 -- AUX: suma todos los elementos de una lista de numeros
 sumatoria :: (Num t) => [t] -> t
