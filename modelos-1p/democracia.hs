@@ -42,8 +42,8 @@ problema porcentajeDeVotosAfirmativos (formulas: seq⟨String x String⟩,votos:
 --}
 
 porcentajeDeVotosAfirmativos :: [(String, String)] -> [Int] -> Int  -> Float
-porcentajeDeVotosAfirmativos _ (v:vs) vTotal = division (vAfirm * 100) vTotal
-    where vAfirm = sumatoria (v:vs)
+porcentajeDeVotosAfirmativos _ votos vTotal = division (vAfirm * 100) vTotal
+    where vAfirm = sumatoria votos
 
 -- AUX: suma todos los elementos de una lista de numeros
 sumatoria :: (Num t) => [t] -> t
@@ -90,10 +90,31 @@ estaEnTuplas ((x,y):xs) e
     | x == e || y == e = True
     | otherwise = estaEnTuplas xs e
 
-
+-------------------------------------------------
 -- Ejercicio 3
+{--
+problema porcentajeDeVotos (vice: String, formulas: seq⟨String x String⟩,votos:seq< Z >) : R {
+ requiere: {La segunda componente de algún elemento de formulas es vice}
+ requiere: {¬formulasInvalidas(formulas)}
+ requiere: {|formulas| = |votos|}
+ requiere: {Todos los elementos de votos son mayores o iguales a 0}
+ requiere: {Hay al menos un elemento de votos mayores estricto a 0}
+ asegura: {res es el porcentaje de votos que obtuvo vice sobre el total de votos afirmativos}
+}
+Para resolver este ejercicio pueden utilizar la función division presentada en el Ejercicio 1.
+--}
 porcentajeDeVotos :: String -> [(String, String)] -> [Int] -> Float
-porcentajeDeVotos _ _ _ = 0.0
+porcentajeDeVotos vice formulas votos = division (votosVice * 100) vAfirm
+    where vAfirm = sumatoria votos
+          votosVice = cantVotosVice vice formulas votos
+
+-- AUX: devuelve la cantidad de votos que obtuvo la formula de un candidato a vicepresidente
+cantVotosVice :: String -> [(String,String)] -> [Int] -> Int
+cantVotosVice _ [] _ = 0
+cantVotosVice _ _ [] = 0
+cantVotosVice vice ((pr,vc):fs) (v:vs)
+    | vice == vc = v
+    | otherwise = cantVotosVice vice fs vs
 
 
 -- Ejercicio 4
