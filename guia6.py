@@ -51,3 +51,19 @@ def cantidad_de_pizzas(comensales: int, min_cant_de_porciones: int):
     porciones_necesarias = comensales * min_cant_de_porciones
     return math.ceil(porciones_necesarias / 8)
 
+# EJERCICIO 3.1
+def alguno_es_0(numero1: float, numero2: float):
+    return (numero1 == 0) or (numero2 == 0)
+
+# EJERCICIO 3.2
+def ambos_son_0(numero1: float, numero2: float):
+    return (numero1 == 0) and (numero2 == 0)
+
+# EJERCICIO 3.3
+def es_nombre_largo(nombre: int):
+    return (3 <= len(nombre)) and (len(nombre) <= 8)
+
+# EJERCICIO 3.4
+def es_bisiesto(año: int):
+    return (es_multiplo_de(año, 400)) or (es_multiplo_de(año, 4) and (not es_multiplo_de(año, 100)))
+
