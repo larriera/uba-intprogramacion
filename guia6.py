@@ -1,17 +1,5 @@
 import math
 
-def testear_ej1():
-    print("~~~ 1.1 ~~~")
-    imprimir_hola_mundo()
-    print("~~~ 1.2 ~~~")
-    imprimir_un_verso()
-    print("~~~ 1.3 ~~~")
-    print(raizDe2())
-    print("~~~ 1.4 ~~~")
-    print(factorial_de_dos())
-    print("~~~ 1.5 ~~~")
-    print(perimetro())
-
 # EJERCICIO 1.1
 def imprimir_hola_mundo():
     print("¡Hola mundo!")
@@ -34,4 +22,32 @@ def factorial_de_dos():
 def perimetro():
     return 2 * math.pi
 
-testear_ej1()
+# EJERCICIO 2.1
+def imprimir_saludo(nombre: str):
+    print("Hola " + nombre)
+
+# EJERCICIO 2.2
+def raiz_cuadrada_de(numero: float):
+    return math.sqrt(numero)
+
+# EJERCICIO 2.3
+def fahrenheit_a_celsius(temp_far: float):
+    return ((temp_far - 32)*5)/9
+
+# EJERCICIO 2.4
+def imprimir_dos_veces(estribillo: str):
+    return estribillo + "\n" + estribillo
+
+# EJERCICIO 2.5
+def es_multiplo_de(n: int, m: int):
+    return n%m == 0
+
+# EJERCICIO 2.6
+def es_par(numero: int):
+    return es_multiplo_de(numero, 2)
+
+# EJERCICIO 2.7
+def cantidad_de_pizzas(comensales: int, min_cant_de_porciones: int):
+    porciones_necesarias = comensales * min_cant_de_porciones
+    return math.ceil(porciones_necesarias / 8)
+
