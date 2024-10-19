@@ -67,3 +67,21 @@ def es_nombre_largo(nombre: int):
 def es_bisiesto(año: int):
     return (es_multiplo_de(año, 400)) or (es_multiplo_de(año, 4) and (not es_multiplo_de(año, 100)))
 
+# EJERCICIO 4
+def peso_pino(altura: float):
+    altura_en_cm: int = math.floor(altura * 100)
+    peso: int = 0
+    i: int = 0
+    while i < altura_en_cm:
+        if i < 300:
+            peso += 3
+        else:
+            peso += 2
+        i += 1
+    return peso
+
+def es_peso_util(peso: float):
+    return (400 <= peso) and (peso <= 1000)
+
+def sirve_pino(altura: float):
+    return es_peso_util(peso_pino(altura))
