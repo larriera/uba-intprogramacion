@@ -133,6 +133,11 @@ def uno_a_diez():
         print(i)
         i += 1
 
+# EJERCICIO 7.1
+def uno_a_diez_v2():
+    for i in range(1,11):
+        print(i)
+
 # EJERCICIO 6.2
 def pares_10_a_40():
     i: int = 10
@@ -141,12 +146,23 @@ def pares_10_a_40():
             print(i)
         i += 1
 
+# EJERCICIO 7.2
+def pares_10_a_40_v2():
+    for i in range(10,41):
+        if es_par(i):
+            print(i)
+
 # EJERCICIO 6.3
 def diez_ecos():
     i: int = 1
     while i < 11:
         print("eco")
         i += 1
+
+# EJERCICIO 7.3
+def diez_ecos_v2():
+    for i in range(10):
+        print("eco" + str(i))
 
 # EJERCICIO 6.4
 def despegue(desde: int):
@@ -155,11 +171,22 @@ def despegue(desde: int):
         desde -= 1
     print("Despegue")
 
+# EJERCICIO 7.4
+def despegue_v2(desde: int):
+    for i in range(desde, 0, -1):
+        print(i)
+    print("Despegue")
+
 # EJERCICIO 6.5
 def viaje_en_el_tiempo(desde: int, hasta: int):
     while desde > hasta:
         desde -= 1
         print("Viajó un año al pasado, estamos en el año: " + str(desde))
+
+# EJERCICIO 7.5
+def viaje_en_el_tiempo_v2(desde: int, hasta: int):
+    for i in range(desde - 1, hasta - 1, -1):
+        print("Viajó un año al pasado, estamos en el año: " + str(i))
     
 # EJERCICIO 6.6
 def viaje_aristoteles(desde: int):
@@ -173,3 +200,10 @@ def viaje_aristoteles(desde: int):
             print("Viajó unos veinte años al pasado, estamos en el año: " + str(desde))
         desde -= 20
 
+# EJERCICIO 7.6
+def viaje_aristoteles_v2(desde: int):
+    for i in range(desde - 20, -385, -20):
+        if (i != 0) & (i < 0):
+            print("Viajó unos veinte años al pasado, estamos en el año: " + str(-i) + " a.C.")
+        if (i != 0) & (i > 0):
+            print("Viajó unos veinte años al pasado, estamos en el año: " + str(i))
