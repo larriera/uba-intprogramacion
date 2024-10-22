@@ -85,3 +85,44 @@ def es_peso_util(peso: float):
 
 def sirve_pino(altura: float):
     return es_peso_util(peso_pino(altura))
+
+# EJERCICIO 5.1
+def devolver_el_doble_si_es_par(numero: int) -> int:
+    return 2 * numero if es_par(numero) else numero
+
+# EJERCICIO 5.2
+def devolver_valor_si_es_par_sino_el_que_sigue(numero: int) -> int:
+    if es_par(numero):
+        return numero
+    return numero + 1
+
+# EJERCICIO 5.3
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(numero: int) -> int:
+    if es_multiplo_de(numero, 9):
+        return 3*numero
+    elif es_multiplo_de(numero, 3):
+        return 2*numero
+    return numero
+
+# EJERCICIO 5.4
+def lindo_nombre(nombre: str) -> str:
+    if len(nombre) >= 5:
+        return "Tu nombre tiene muchas letras!"
+    return "Tu nombre tiene menos de 5 caracteres"
+
+# EJERCICIO 5.5
+def elRango(numero: float):
+    if numero < 5:
+        print("Menor a 5")
+    if (numero >= 10) & (numero <= 20):
+        print("Entre 10 y 20")
+    if numero > 20:
+        print("Mayor a 20")
+
+# EJERCICIO 5.6
+def vacaciones(sexo: str, edad: int):
+    if (edad < 18) | ((sexo == "F")&(edad >= 60)) | ((sexo == "M")&(edad >= 65)):
+        print("Andá de vacaciones")
+    else:
+        print("Te toca trabajar")
+
