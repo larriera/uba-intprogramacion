@@ -126,3 +126,50 @@ def vacaciones(sexo: str, edad: int):
     else:
         print("Te toca trabajar")
 
+# EJERCICIO 6.1
+def uno_a_diez():
+    i: int = 1
+    while i < 11:
+        print(i)
+        i += 1
+
+# EJERCICIO 6.2
+def pares_10_a_40():
+    i: int = 10
+    while i < 41:
+        if es_par(i):
+            print(i)
+        i += 1
+
+# EJERCICIO 6.3
+def diez_ecos():
+    i: int = 1
+    while i < 11:
+        print("eco")
+        i += 1
+
+# EJERCICIO 6.4
+def despegue(desde: int):
+    while desde > 0:
+        print(desde)
+        desde -= 1
+    print("Despegue")
+
+# EJERCICIO 6.5
+def viaje_en_el_tiempo(desde: int, hasta: int):
+    while desde > hasta:
+        desde -= 1
+        print("Viajó un año al pasado, estamos en el año: " + str(desde))
+    
+# EJERCICIO 6.6
+def viaje_aristoteles(desde: int):
+    desde -= 20
+    while desde >= -384:
+        if desde == 0: # evitar que aparezca el año 0
+            desde -= 1
+        if desde < 0:
+            print("Viajó unos veinte años al pasado, estamos en el año: " + str(-desde) + " a.C.")
+        else:
+            print("Viajó unos veinte años al pasado, estamos en el año: " + str(desde))
+        desde -= 20
+
