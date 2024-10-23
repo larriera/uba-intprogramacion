@@ -92,23 +92,21 @@ def devolver_el_doble_si_es_par(numero: int) -> int:
 
 # EJERCICIO 5.2
 def devolver_valor_si_es_par_sino_el_que_sigue(numero: int) -> int:
-    if es_par(numero):
-        return numero
-    return numero + 1
+    if not es_par(numero):
+        numero += 1
+    return numero
 
 # EJERCICIO 5.3
 def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(numero: int) -> int:
     if es_multiplo_de(numero, 9):
-        return 3*numero
+        numero = 3*numero
     elif es_multiplo_de(numero, 3):
-        return 2*numero
+        numero = 2*numero
     return numero
 
 # EJERCICIO 5.4
 def lindo_nombre(nombre: str) -> str:
-    if len(nombre) >= 5:
-        return "Tu nombre tiene muchas letras!"
-    return "Tu nombre tiene menos de 5 caracteres"
+    return "Tu nombre tiene muchas letras!" if (len(nombre) >= 5) else "Tu nombre tiene menos de 5 caracteres"
 
 # EJERCICIO 5.5
 def elRango(numero: float):
