@@ -71,3 +71,44 @@ def minimo(s: list[int]) -> int:
             min = s[i]
     return min
 
+# EJERCICIO 1.6
+def ordenados(s: list[int]) -> bool:
+    es_orden: bool = True
+    i: int = 0
+    while (i < len(s)) & es_orden:
+        if s[i] > s[i+1]:
+            es_orden = False
+    return es_orden
+
+# EJERCICIO 1.7
+def pos_maximo(s: list[int]) -> int:
+    pos: int = -1
+    i: int = 0
+    while (i < len(s)):
+        if s[i] == maximo(s):
+            pos = i
+            i = len(s) #corto el ciclo cuando encuentro la primera aparicion
+        i += 1
+    return pos
+
+# EJERCICIO 1.8 - aca cambio la implementacion porque pide especificamente la ultima aparicion     
+def pos_minimo(s: list[int]) -> int:
+    pos: int = -1
+    i: int = 0
+    while i < len(s):
+        if s[i] == minimo(s):
+            pos = i
+        i += 1
+    return pos
+
+# EJERCICIO 1.9
+def hay_mayor_a_7(s: list[str]) -> bool:
+    hay_mayor: bool = False
+    i: int = 0
+    while (i < len(s)) & (not hay_mayor):
+        print(i)
+        if len(s[i]) > 7:
+            hay_mayor = True
+        i += 1
+    return hay_mayor
+
