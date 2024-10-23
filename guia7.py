@@ -112,3 +112,18 @@ def hay_mayor_a_7(s: list[str]) -> bool:
         i += 1
     return hay_mayor
 
+# EJERCICIO 1.10
+def palindromo(texto: str) -> bool:
+    return texto == lista_a_cadena(reves(texto))
+
+def reves(s: list) -> list:
+    lista_reves = []
+    for i in range((len(s)-1), -1, -1):
+        lista_reves.append(s[i])
+    return lista_reves
+
+def lista_a_cadena(lista: list) -> str:
+    cadena = ""
+    for i in range(len(lista)):
+        cadena += str(lista[i])
+    return cadena
