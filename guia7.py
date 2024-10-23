@@ -30,28 +30,34 @@ def generar_sec_n(n: int) -> str:
 
 # EJERCICIO 1.1
 def pertenece(s: list[int], e: int) -> bool:
-    for i in range(len(s)):
+    perte: bool = False
+    i: int = 0
+    while (i < len(s)) & (not perte):
         if s[i] == e:
-            return True
-    return False
+            perte = True
+        i += 1
+    return perte
 
 # EJERCICIO 1.2
 def divide_a_todos(s: list[int], e: int) -> bool:
-    for i in range(len(s)):
+    divide: bool = True
+    i: int = 0
+    while (i < len(s)) & divide:
         if (s[i] % e) != 0:
-            return False
-    return True
+            divide = False
+        i += 1
+    return divide
 
 # EJERCICIO 1.3
 def suma_total(s: list[int]) -> int:
-    suma = 0
+    suma: int = 0
     for i in range(len(s)):
         suma += s[i]
     return suma
 
 # EJERCICIO 1.4
 def maximo(s: list[int]) -> int:
-    max = s[0]
+    max: int = s[0]
     for i in range(len(s)):
         if s[i] > max:
             max = s[i]
@@ -59,7 +65,7 @@ def maximo(s: list[int]) -> int:
 
 # EJERCICIO 1.5
 def minimo(s: list[int]) -> int:
-    min = s[0]
+    min: int = s[0]
     for i in range(len(s)):
         if s[i] < min:
             min = s[i]
