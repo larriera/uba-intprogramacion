@@ -73,9 +73,10 @@ def minimo(s: list[int]) -> int:
 def ordenados(s: list[int]) -> bool:
     es_orden: bool = True
     i: int = 0
-    while (i < len(s)) & es_orden:
+    while (i < len(s) - 1) & es_orden:
         if s[i] > s[i+1]:
             es_orden = False
+        i += 1
     return es_orden
 
 # EJERCICIO 1.7
@@ -291,21 +292,28 @@ def saldo_actual(movimientos: list[tuple]) -> int:
 
 # EJERCICIO 5.1
 def pertenece_a_cada_uno_version_1(s: list[list[int]], e: int, res: list[bool]):
+    if len(res) < len(s): #para no irnos de rango
+        for i in range(len(s) - len(res)):
+            res.append(True)
     for i in range(len(s)):
         if pertenece(s[i], e):
             res[i] = True
         else:
             res[i] = False
 
-# test: list[bool] = [True]*7
-# print("Estado inicial:")
-# print(test)
-# print("Llamo la funcion:")
-# pertenece_a_cada_uno_version_1([[1],[0],[1],[1],[0],[0],[0]], 1, test)
-# print("Estado final:")
-# print(test)
-
-# EJERCICIO 5.2 - es la misma especificación que el anterior?
+# EJERCICIO 5.2
+def pertenece_a_cada_uno_version_2(s: list[list[int]], e: int, res: list[bool]):
+    if len(res) < len(s): #para no irnos de rango
+        for i in range(len(s) - len(res)):
+            res.append(True)
+    if len(res) > len(s): #asegura |s| = |res|
+        for i in range(len(s) - len(res)):
+            res.pop(i)
+    for i in range(len(s)):
+        if pertenece(s[i], e):
+            res[i] = True
+        else:
+            res[i] = False
 
 # EJERCICIO 5.3
 def pertenece_a_cada_uno_version_3(s: list[list[int]], e: int) -> list[bool]:
@@ -317,3 +325,21 @@ def pertenece_a_cada_uno_version_3(s: list[list[int]], e: int) -> list[bool]:
             res.append(False)
     return res
 
+# EJERCICIO 6.1
+def es_matriz(s: list[list[int]]) -> bool:
+    res: bool = True
+    i: int = 1
+    while res & (i < len(s)):
+        if len(s[0]) != len(s[i]):
+            res = False
+        i += 1
+    return res
+
+# EJERCICIO 6.2
+def filas_ordenadas(m: list[list[int]], res: list[bool]):
+    for i in range(len(m)):
+        print(res)
+        if ordenados(m[i]):
+            res[i] = True
+        else:
+            res[i] = False
