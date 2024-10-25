@@ -289,3 +289,31 @@ def saldo_actual(movimientos: list[tuple]) -> int:
             saldo -= mov[1]
     return saldo
 
+# EJERCICIO 5.1
+def pertenece_a_cada_uno_version_1(s: list[list[int]], e: int, res: list[bool]):
+    for i in range(len(s)):
+        if pertenece(s[i], e):
+            res[i] = True
+        else:
+            res[i] = False
+
+# test: list[bool] = [True]*7
+# print("Estado inicial:")
+# print(test)
+# print("Llamo la funcion:")
+# pertenece_a_cada_uno_version_1([[1],[0],[1],[1],[0],[0],[0]], 1, test)
+# print("Estado final:")
+# print(test)
+
+# EJERCICIO 5.2 - es la misma especificación que el anterior?
+
+# EJERCICIO 5.3
+def pertenece_a_cada_uno_version_3(s: list[list[int]], e: int) -> list[bool]:
+    res: list[bool] = []
+    for i in range(len(s)):
+        if pertenece(s[i], e):
+            res.append(True)
+        else:
+            res.append(False)
+    return res
+
