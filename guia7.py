@@ -278,3 +278,14 @@ def promedio(s: list) -> float:
         prom += i
     prom = prom / len(s)
     return round(prom, 2)
+
+# EJERCICIO 4
+def saldo_actual(movimientos: list[tuple]) -> int:
+    saldo: int = 0
+    for mov in movimientos:
+        if mov[0] == "I":
+            saldo += mov[1]
+        if mov[0] == "R":
+            saldo -= mov[1]
+    return saldo
+
