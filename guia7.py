@@ -1,4 +1,8 @@
+# REVISAR:
+# * no modificar listas pasadas como 'in'
+
 import copy
+import random
 
 # EJERCICIOS ADICIONALES 2024-10-14
 
@@ -71,13 +75,13 @@ def minimo(s: list[int]) -> int:
 
 # EJERCICIO 1.6
 def ordenados(s: list[int]) -> bool:
-    es_orden: bool = True
+    hay_orden: bool = True
     i: int = 0
-    while (i < len(s) - 1) & es_orden:
+    while (i < len(s) - 1) & hay_orden:
         if s[i] > s[i+1]:
-            es_orden = False
+            hay_orden = False
         i += 1
-    return es_orden
+    return hay_orden
 
 # EJERCICIO 1.7
 def pos_maximo(s: list[int]) -> int:
@@ -134,8 +138,7 @@ def tres_consecutivos(s: list[int]) -> bool:
     hay_consec: bool = False
     i: int = 0
     while (i < (len(s) - 3)) & (not hay_consec):
-        print(i)
-        if (s[i] == s[i+1]) & (s[i] == s[i+2]):
+        if s[i] == s[i+1] == s[i+2]:
             hay_consec = True
         i += 1
     return hay_consec
@@ -343,3 +346,123 @@ def filas_ordenadas(m: list[list[int]], res: list[bool]):
             res[i] = True
         else:
             res[i] = False
+
+# EJERCICIO 6.3
+def columna(m: list[list[int]], c: int) -> list[int]:
+    elem_pos_c: list = []
+    for i in m:
+        elem_pos_c.append(i[c])
+    return elem_pos_c
+
+# EJERCICIO 6.4
+def columnas_ordenadas(m: list[list[int]]) -> bool:
+    hay_orden: bool = True
+    i: int = 0
+    while (i < len(m[0])) & hay_orden:
+        if not (ordenados(columna(m,i))):
+            hay_orden = False
+        i += 1
+    return hay_orden
+
+# EJERCICIO 6.5
+def transponer(m: list[list[int]]) -> list[list[int]]:
+    m_t: list = []
+    for i in range(len(m[0])):
+        m_t.append(columna(m, i))
+    return m_t
+
+# EJERCICIO 6.6
+def quien_gana_tateti(m:list[list[str]]) -> int:
+    gana: str = "N"
+    i: int = 0
+    while (i < 3) & (gana == "N"): # freno si encuentro ganador
+        if m[i][0] == m[i][1] == m[i][2]: # horizontal
+            gana = m[i][0]
+        elif m[0][i] == m[1][i] == m[2][i]: # vertical
+            gana = m[0][i]
+        i += 1
+    if (gana == "N") & ((m[0][0] == m[1][1] == m[2][2]) | (m[0][2] == m[1][1] == m[2][0])): # si no encontre ganador en hor o ver, entonces reviso las diagonales
+        gana = m[1][1] #por especificacion, si hay ganador diag solo una de las diagonales tendra los simbolos ganadores. como no me importa en que diagonal se gano, reviso el simbolo del centro del tablero (que necesariamente estara en la diag ganadora)
+    # defino que tengo que devolver:
+    res: int = 2
+    if gana == "O":
+        res = 0
+    elif gana == "X":
+        res = 1
+    return res
+
+# EJERCICIO 7.1
+def listar_alumnos() -> list:
+    lista: list = []
+    nuevo_alumno: str = "n"
+    while (nuevo_alumno != "listo") & (nuevo_alumno != ""):
+        lista.append(nuevo_alumno)
+        nuevo_alumno = input("Nombre del alumno --> ")
+    lista.pop(0)
+    return lista
+
+# EJERCICIO 7.2
+def monedero() -> list:
+    historial: list = []
+    accion: str = ""
+    monto: float = 0
+    while accion != 'X':
+        accion = input("Ingrese C para cargar, D para descontar o X para salir: ")
+        if accion != 'X' :
+            monto = input("Ingrese el monto: ")
+            historial.append((accion, monto))
+            print("Movimiento guardado.")
+    return historial
+
+# EJERCICIO 7.3
+def sieteymedio() -> list:
+    historial: list = []
+    total: int = 0
+    cartas: list = [1,2,3,4,5,6,7,10,11,12]
+    carta_nueva: int = 0
+    se_planta: str = "N"
+    while se_planta == "N":
+        carta_nueva = random.choice(cartas)
+        historial.append(carta_nueva)
+        if carta_nueva < 10:
+            total += carta_nueva
+        else:
+            total += 0.5
+        print("Sale una carta con el valor " + str(carta_nueva) + ". Vas sumando " + str(total) + " puntos.")
+        if total <= 7.5:
+            se_planta = input("¿Te plantás? (S/N)   ")
+        else:
+            print("Ufa, te pasaste. Perdiste.")
+            se_planta = "S"
+    print("Este es tu historial de cartas:")
+    print(historial)
+    return historial
+
+# EJERCICIO 7.4
+def fortaleza_pwd():
+    pwd: str = input("Ingrese su contraseña: ")
+    print(analizar_pwd(pwd))
+    return analizar_pwd(pwd)
+
+def analizar_pwd(pwd: str) -> str:
+    res: str = "AMARILLA"
+    if len(pwd) < 5:
+        res = "ROJA"
+    elif (len(pwd) > 8) & tiene_minuscula(pwd) & tiene_mayuscula(pwd) & tiene_elem_de(pwd, "0123456789"):
+        res = "VERDE"
+    return res
+
+def tiene_elem_de(s: list, elems: list) -> bool:
+    tiene: bool = False
+    i: int = 0
+    while (i < len(s)) & (not tiene):
+        if s[i] in elems:
+            tiene = True
+        i += 1
+    return tiene
+
+def tiene_minuscula(txt: str) -> bool:
+    return tiene_elem_de(txt, "abcdefghijklmnñopqrstuvwxyz")
+
+def tiene_mayuscula(txt: str) -> bool:
+    return tiene_elem_de(txt, "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
