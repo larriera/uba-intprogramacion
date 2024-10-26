@@ -34,7 +34,7 @@ def generar_sec_n(n: int) -> str:
 def pertenece(s: list[int], e: int) -> bool:
     perte: bool = False
     i: int = 0
-    while (i < len(s)) & (not perte):
+    while (i < len(s)) and (not perte):
         if s[i] == e:
             perte = True
         i += 1
@@ -44,7 +44,7 @@ def pertenece(s: list[int], e: int) -> bool:
 def divide_a_todos(s: list[int], e: int) -> bool:
     divide: bool = True
     i: int = 0
-    while (i < len(s)) & divide:
+    while (i < len(s)) and divide:
         if (s[i] % e) != 0:
             divide = False
         i += 1
@@ -77,7 +77,7 @@ def minimo(s: list[int]) -> int:
 def ordenados(s: list[int]) -> bool:
     hay_orden: bool = True
     i: int = 0
-    while (i < len(s) - 1) & hay_orden:
+    while (i < len(s) - 1) and hay_orden:
         if s[i] > s[i+1]:
             hay_orden = False
         i += 1
@@ -108,7 +108,7 @@ def pos_minimo(s: list[int]) -> int:
 def hay_mayor_a_7(s: list[str]) -> bool:
     hay_mayor: bool = False
     i: int = 0
-    while (i < len(s)) & (not hay_mayor):
+    while (i < len(s)) and (not hay_mayor):
         print(i)
         if len(s[i]) > 7:
             hay_mayor = True
@@ -137,7 +137,7 @@ def lista_a_cadena(lista: list) -> str:
 def tres_consecutivos(s: list[int]) -> bool:
     hay_consec: bool = False
     i: int = 0
-    while (i < (len(s) - 3)) & (not hay_consec):
+    while (i < (len(s) - 3)) and (not hay_consec):
         if s[i] == s[i+1] == s[i+2]:
             hay_consec = True
         i += 1
@@ -257,7 +257,7 @@ def da_vuelta_str(s: str) -> str:
 def resultadoMateria(notas: list[int]) -> int:
     resultado: int = 0
     prom: float = promedio(notas)
-    if (not todo_aprobado(notas)) | (prom < 4):
+    if (not todo_aprobado(notas)) or (prom < 4):
         resultado = 3
     elif prom < 8:
         resultado = 1
@@ -269,7 +269,7 @@ def resultadoMateria(notas: list[int]) -> int:
 def todo_aprobado(notas: list[int]) -> bool:
     aprobado: bool = True
     i: int = 0
-    while (i < len(notas)) & aprobado:
+    while (i < len(notas)) and aprobado:
         if notas[i] < 4:
             aprobado = False
         i += 1
@@ -332,7 +332,7 @@ def pertenece_a_cada_uno_version_3(s: list[list[int]], e: int) -> list[bool]:
 def es_matriz(s: list[list[int]]) -> bool:
     res: bool = True
     i: int = 1
-    while res & (i < len(s)):
+    while res and (i < len(s)):
         if len(s[0]) != len(s[i]):
             res = False
         i += 1
@@ -358,7 +358,7 @@ def columna(m: list[list[int]], c: int) -> list[int]:
 def columnas_ordenadas(m: list[list[int]]) -> bool:
     hay_orden: bool = True
     i: int = 0
-    while (i < len(m[0])) & hay_orden:
+    while (i < len(m[0])) and hay_orden:
         if not (ordenados(columna(m,i))):
             hay_orden = False
         i += 1
@@ -375,13 +375,13 @@ def transponer(m: list[list[int]]) -> list[list[int]]:
 def quien_gana_tateti(m:list[list[str]]) -> int:
     gana: str = "N"
     i: int = 0
-    while (i < 3) & (gana == "N"): # freno si encuentro ganador
+    while (i < 3) and (gana == "N"): # freno si encuentro ganador
         if m[i][0] == m[i][1] == m[i][2]: # horizontal
             gana = m[i][0]
         elif m[0][i] == m[1][i] == m[2][i]: # vertical
             gana = m[0][i]
         i += 1
-    if (gana == "N") & ((m[0][0] == m[1][1] == m[2][2]) | (m[0][2] == m[1][1] == m[2][0])): # si no encontre ganador en hor o ver, entonces reviso las diagonales
+    if (gana == "N") and ((m[0][0] == m[1][1] == m[2][2]) or (m[0][2] == m[1][1] == m[2][0])): # si no encontre ganador en hor o ver, entonces reviso las diagonales
         gana = m[1][1] #por especificacion, si hay ganador diag solo una de las diagonales tendra los simbolos ganadores. como no me importa en que diagonal se gano, reviso el simbolo del centro del tablero (que necesariamente estara en la diag ganadora)
     # defino que tengo que devolver:
     res: int = 2
@@ -395,7 +395,7 @@ def quien_gana_tateti(m:list[list[str]]) -> int:
 def listar_alumnos() -> list:
     lista: list = []
     nuevo_alumno: str = "n"
-    while (nuevo_alumno != "listo") & (nuevo_alumno != ""):
+    while (nuevo_alumno != "listo") and (nuevo_alumno != ""):
         lista.append(nuevo_alumno)
         nuevo_alumno = input("Nombre del alumno --> ")
     lista.pop(0)
@@ -448,14 +448,14 @@ def analizar_pwd(pwd: str) -> str:
     res: str = "AMARILLA"
     if len(pwd) < 5:
         res = "ROJA"
-    elif (len(pwd) > 8) & tiene_minuscula(pwd) & tiene_mayuscula(pwd) & tiene_elem_de(pwd, "0123456789"):
+    elif (len(pwd) > 8) and tiene_minuscula(pwd) and tiene_mayuscula(pwd) and tiene_elem_de(pwd, "0123456789"):
         res = "VERDE"
     return res
 
 def tiene_elem_de(s: list, elems: list) -> bool:
     tiene: bool = False
     i: int = 0
-    while (i < len(s)) & (not tiene):
+    while (i < len(s)) and (not tiene):
         if s[i] in elems:
             tiene = True
         i += 1
