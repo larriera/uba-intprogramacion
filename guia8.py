@@ -14,7 +14,7 @@ def generar_pila_al_azar(cantidad: int, desde: int, hasta: int) -> Pila[int]:
     return p
 
 # EJERCICIO 2
-def cantidad_elementos(p: Pila) -> int:
+def cant_elementos_pila(p: Pila) -> int:
     p_copia: Pila = Pila()
     cant: int = 0
     while not p.empty():
@@ -74,7 +74,7 @@ def esta_bien_balanceada(s: str) -> bool:
             cant_cierran += 1
         else:
             p_copia.put(e) #laburo en la copia asi no se rompe la condicion del while
-            esta_bien = cantidad_elementos(p_copia) == cant_cierran
+            esta_bien = cant_elementos_pila(p_copia) == cant_cierran
     return esta_bien
 
 # print(esta_bien_balanceada("1 + ( 2 x 3 − ( 2 0 / 5 ) )"))
@@ -169,8 +169,20 @@ def generar_cola_al_azar(cantidad: int, desde: int, hasta: int) -> Cola:
     print(c.queue)
     return c
 
-#generar_pila_al_azar(5,0,4)
-
+# EJERCICIO 9
+def cant_elementos_cola(c: Cola) -> int:
+    c_reves: Cola = Cola()
+    cant: int = 0
+    while not c.empty():
+        e: int = c.get()
+        c_reves.put(e) #armo una copia de la cola para poder restaurarla despues (como es una cola, los elementos estaran en orden contrario a la original)
+        cant += 1 #voy contando cuantos elementos tomo
+    c_copia: Cola = Cola()
+    while not c_reves.empty(): #ahora si, armo una copia con los elementos en el orden correcto
+        c_copia.put(c_reves.get())
+    while not c_copia.empty(): #restauro la cola original
+        c.put(c_copia.get())
+    return cant
     
 # EJERCICIO 13.1
 def generar_tablero() -> list[int]:
