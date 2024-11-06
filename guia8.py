@@ -171,75 +171,60 @@ def generar_cola_al_azar(cantidad: int, desde: int, hasta: int) -> Cola:
 
 # EJERCICIO 9
 def cant_elementos_cola(c: Cola) -> int:
-    c_reves: Cola = Cola()
+    c_copia: Cola = Cola()
     cant: int = 0
     while not c.empty():
         e: int = c.get()
-        c_reves.put(e) #armo una copia de la cola para poder restaurarla despues (como es una cola, los elementos estaran en orden contrario a la original)
+        c_copia.put(e) #armo una copia de la cola para poder restaurarla despues
         cant += 1 #voy contando cuantos elementos tomo
-    c_copia: Cola = Cola()
-    while not c_reves.empty(): #ahora si, armo una copia con los elementos en el orden correcto
-        c_copia.put(c_reves.get())
     while not c_copia.empty(): #restauro la cola original
         c.put(c_copia.get())
     return cant
 
 # EJERCICIO 10
 def buscar_el_max_cola(c: Cola) -> int:
-    c_reves: Cola = Cola()
+    c_copia: Cola = Cola()
     max: int = c.get()
-    c_reves.put(max)
+    c_copia.put(max)
     while not c.empty():
         e: int = c.get()
         if e > max:
             max = e
-        c_reves.put(e)
-    c_copia: Cola = Cola()
-    while not c_reves.empty():
-        c_copia.put(c_reves.get())
+        c_copia.put(e)
     while not c_copia.empty():
         c.put(c_copia.get())
     return max
 
 # EJERCICIO 11
 def buscar_nota_minima(c: Cola[tuple[str,int]]) -> tuple[str,int]:
-    c_reves: Cola = Cola()
+    c_copia: Cola = Cola()
     nota_min: tuple = c.get()
-    c_reves.put(nota_min)
+    c_copia.put(nota_min)
     while not c.empty():
         nota: tuple = c.get()
         if nota[1] < nota_min[1]:
             nota_min = nota
-        c_reves.put(nota)
-    c_copia: Cola = Cola()
-    while not c_reves.empty():
-        c_copia.put(c_reves.get())
+        c_copia.put(nota)
     while not c_copia.empty():
         c.put(c_copia.get())
     return nota_min
 
 # EJERCICIO 12
 def intercalar_colas(c1: Cola, c2: Cola) -> Cola:
-    c1_reves: Cola = Cola()
-    c2_reves: Cola = Cola()
+    c1_copia: Cola = Cola()
+    c2_copia: Cola = Cola()
     intercalado: Cola = Cola()
     while (not c1.empty()) or (not c2.empty()):
         e1 = c1.get()
         intercalado.put(e1)
-        c1_reves.put(e1)
+        c1_copia.put(e1)
         e2 = c2.get()
         intercalado.put(e2)
-        c2_reves.put(e2)
-    c1_copia: Cola = Cola()
-    c2_copia: Cola = Cola()
+        c2_copia.put(e2)
     #restauro c1:
-    while not c1_reves.empty():
-        c1_copia.put(c1_reves.get())
     while not c1_copia.empty():
         c1.put(c1_copia.get())
     #restauro c2:
-    while not c2_reves.empty():
-        c2_copia.put(c2_reves.get())
     while not c2_copia.empty():
         c2.put(c2_copia.get())
     return intercalado
@@ -264,17 +249,14 @@ def armar_secuencia_bingo() -> Cola[int]:
 
 # EJERCICIO 13.2
 def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
-    bol_reves: Cola = Cola()
+    bol_copia: Cola = Cola()
     cant_jugadas: int = 0
     while (len(carton) > 0) and (not bolillero.empty()):
         sale_num: int = bolillero.get()
         if sale_num in carton:
             quitar_elem(carton, sale_num)
-        bol_reves.put(sale_num)
+        bol_copia.put(sale_num)
         cant_jugadas += 1
-    bol_copia: Cola = Cola()
-    while not bol_reves.empty():
-        bol_copia.put(bol_reves.get())
     while not bol_copia.empty():
         bolillero.put(bol_copia.get())
     return cant_jugadas
@@ -311,19 +293,25 @@ def quitar_elem(s: list, e) -> list:
 
 # EJERCICIO 14
 def n_pacientes_urgentes(c: Cola[tuple[int, str, str]]) -> int:
-    c_reves: Cola = Cola()
+    c_copia: Cola = Cola()
     cant_urgentes: int = 0
     while not c.empty():
         paciente: tuple = c.get()
         if 0 < paciente[0] < 4:
             cant_urgentes += 1
-        c_reves.put(paciente)
-    c_copia: Cola = Cola()
-    while not c_reves.empty():
-        c_copia.put(c_reves.get())
+        c_copia.put(paciente)
     while not c_copia.empty():
         c.put(c_copia.get())
     return cant_urgentes
+
+# EJERCICIO 15
+# def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str, int, bool, bool]]:
+#     c_reves: Cola = Cola()
+#     prioridad: Cola = Cola()
+#     preferencial: Cola = Cola()
+#     resto: Cola = Cola()
+#     while not c.empty():
+#         cliente
 
 # EJERCICIO 17
 def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]) -> dict[str, float]:
