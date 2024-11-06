@@ -28,7 +28,7 @@ def cant_elementos_pila(p: Pila) -> int:
 #pilatest = generar_pila_al_azar(5,0,15)
 
 # EJERCICIO 3
-def buscar_el_maximo(p: Pila[int]) -> int:
+def buscar_el_max_pila(p: Pila[int]) -> int:
     p_copia: Pila = Pila()
     max: int = p.get()
     p_copia.put(max)
@@ -183,6 +183,23 @@ def cant_elementos_cola(c: Cola) -> int:
     while not c_copia.empty(): #restauro la cola original
         c.put(c_copia.get())
     return cant
+
+# EJERCICIO 10
+def buscar_el_max_cola(c: Cola) -> int:
+    c_reves: Cola = Cola()
+    max: int = c.get()
+    c_reves.put(max)
+    while not c.empty():
+        e: int = c.get()
+        if e > max:
+            max = e
+        c_reves.put(e)
+    c_copia: Cola = Cola()
+    while not c_reves.empty():
+        c_copia.put(c_reves.get())
+    while not c_copia.empty():
+        c.put(c_copia.get())
+    return max
     
 # EJERCICIO 13.1
 def generar_tablero() -> list[int]:
