@@ -305,13 +305,31 @@ def n_pacientes_urgentes(c: Cola[tuple[int, str, str]]) -> int:
     return cant_urgentes
 
 # EJERCICIO 15
-# def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str, int, bool, bool]]:
-#     c_reves: Cola = Cola()
-#     prioridad: Cola = Cola()
-#     preferencial: Cola = Cola()
-#     resto: Cola = Cola()
-#     while not c.empty():
-#         cliente
+def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str, int, bool, bool]]:
+    c_copia: Cola = Cola()
+    prioridad: Cola = Cola()
+    preferencial: Cola = Cola()
+    resto: Cola = Cola()
+    while not c.empty():
+        cliente: tuple = c.get()
+        if cliente[3]: #tiene prioridad = True
+            prioridad.put(cliente)
+        elif cliente[2]: #tiene cuenta preferencial = True
+            preferencial.put(cliente)
+        else:
+            resto.put(cliente)
+        c_copia.put(cliente)
+    orden_de_atencion: Cola = Cola()
+    while not prioridad.empty():
+        print(prioridad.queue)
+        orden_de_atencion.put(prioridad.get())
+    while not preferencial.empty():
+        orden_de_atencion.put(preferencial.get())
+    while not resto.empty():
+        orden_de_atencion.put(resto.get())
+    while not c_copia.empty():
+        c.put(c_copia.get())
+    return orden_de_atencion
 
 # EJERCICIO 17
 def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]) -> dict[str, float]:
