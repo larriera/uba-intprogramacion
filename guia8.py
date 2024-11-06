@@ -368,7 +368,33 @@ def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
         if int(frecuencias[k]) > int(mas_frecuente[1]):
             nueva_mas_frecuente: tuple = (k, frecuencias[k])
             mas_frecuente = nueva_mas_frecuente
-    return mas_frecuente[0]    
+    return mas_frecuente[0]
+
+# EJERCICIO 19
+# historiales: dict = {}
+# hist: Pila = Pila()
+# hist.put("marea.net.ar")
+# hist.put("oasis.net")
+# hist.put("google.com")
+# historiales["yop"] = hist
+
+def visitar_sitio(historiales: dict[str, Pila[str]], usuario: str, sitio: str):
+    if usuario in historiales:
+        historiales[usuario].put(sitio)
+    else:
+        nuevo_historial: Pila = Pila()
+        nuevo_historial.put(sitio)
+        historiales[usuario] = nuevo_historial
+
+def navegar_atras(historiales: dict[str, Pila[str]], usuario: str):
+    mi_historial: Pila = historiales[usuario]
+    sitio_actual: str = mi_historial.get()
+    sitio_anterior: str = mi_historial.get()
+    # muevo el sitio anterior arriba de todo
+    mi_historial.put(sitio_actual)
+    mi_historial.put(sitio_anterior)
+    # actualizo los historiales
+    historiales[usuario] = mi_historial
 
 # EJERCICIO 21.1
 def contar_lineas(nombre_archivo: str) -> int:
