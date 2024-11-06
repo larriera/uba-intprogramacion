@@ -126,7 +126,7 @@ def evaluar_expresion(s: str) -> float:
 # print(resultado) # Deber´ıa devolver 33
 
 # EJERCICIO 7
-def intercalar(p1: Pila, p2: Pila) -> Pila:
+def intercalar_pilas(p1: Pila, p2: Pila) -> Pila:
     p1_copia: Pila = Pila()
     p2_copia: Pila = Pila()
     intercalado_reves: Pila = Pila()
@@ -157,7 +157,7 @@ def intercalar(p1: Pila, p2: Pila) -> Pila:
 # dos.put(2)
 # dos.put(22)
 # dos.put(222)
-# print(intercalar(uno,dos).queue)
+# print(intercalar_pilas(uno,dos).queue)
 
 # EJERCICIO 8
 def generar_cola_al_azar(cantidad: int, desde: int, hasta: int) -> Cola:
@@ -217,6 +217,32 @@ def buscar_nota_minima(c: Cola[tuple[str,int]]) -> tuple[str,int]:
     while not c_copia.empty():
         c.put(c_copia.get())
     return nota_min
+
+# EJERCICIO 12
+def intercalar_colas(c1: Cola, c2: Cola) -> Cola:
+    c1_reves: Cola = Cola()
+    c2_reves: Cola = Cola()
+    intercalado: Cola = Cola()
+    while (not c1.empty()) or (not c2.empty()):
+        e1 = c1.get()
+        intercalado.put(e1)
+        c1_reves.put(e1)
+        e2 = c2.get()
+        intercalado.put(e2)
+        c2_reves.put(e2)
+    c1_copia: Cola = Cola()
+    c2_copia: Cola = Cola()
+    #restauro c1:
+    while not c1_reves.empty():
+        c1_copia.put(c1_reves.get())
+    while not c1_copia.empty():
+        c1.put(c1_copia.get())
+    #restauro c2:
+    while not c2_reves.empty():
+        c2_copia.put(c2_reves.get())
+    while not c2_copia.empty():
+        c2.put(c2_copia.get())
+    return intercalado
     
 # EJERCICIO 13.1
 def generar_tablero() -> list[int]:
