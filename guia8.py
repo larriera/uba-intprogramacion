@@ -310,10 +310,22 @@ def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str,
 
 # EJERCICIO 16
 def agrupar_por_longitud(nombre_archivo: str) -> dict:
-    archivo = open(nombre_archivo, "r")
-    contenido: list = archivo.read()
-    archivo.close()
     d: dict = {}
+    palabras: list = palabras_en_archivo(nombre_archivo)
+    for i in palabras:
+        l: int = len(i)
+        if l in d:
+            d[l] += 1
+        else:
+            d[l] = 1
+    if 0 in d:
+        d.pop(0)
+    return d
+
+def palabras_en_archivo(nombre_archivo: str) -> list[str]:
+    archivo = open(nombre_archivo, "r")
+    contenido: str = archivo.read()
+    archivo.close()
     palabras: list = []
     palabra_actual: str = ""
     print(contenido)
@@ -324,15 +336,7 @@ def agrupar_por_longitud(nombre_archivo: str) -> dict:
         else:
             palabra_actual += i
     palabras.append(palabra_actual)
-    for i in palabras:
-        l: int = len(i)
-        if l in d:
-            d[l] += 1
-        else:
-            d[l] = 1
-    if 0 in d:
-        d.pop(0)
-    return d
+    return palabras
 
 # EJERCICIO 17
 def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]) -> dict[str, float]:
@@ -356,6 +360,7 @@ def promedio_alumnos(notas: list[tuple[str, float]], alumno: str) -> float:
 #     archivo = open(nombre_archivo, "r")
 #     contenido = archivo.read()
 #     archivo.close()
+    
 
 
 # EJERCICIO 21.1
