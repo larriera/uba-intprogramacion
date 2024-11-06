@@ -263,14 +263,20 @@ def armar_secuencia_bingo() -> Cola[int]:
     return bolillero
 
 # EJERCICIO 13.2
-# !!!! falta respetar que el bolillero sea 'in'
 def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
+    bol_reves: Cola = Cola()
     cant_jugadas: int = 0
     while (len(carton) > 0) and (not bolillero.empty()):
         sale_num: int = bolillero.get()
         if sale_num in carton:
             quitar_elem(carton, sale_num)
+        bol_reves.put(sale_num)
         cant_jugadas += 1
+    bol_copia: Cola = Cola()
+    while not bol_reves.empty():
+        bol_copia.put(bol_reves.get())
+    while not bol_copia.empty():
+        bolillero.put(bol_copia.get())
     return cant_jugadas
 
 def quitar_elem(s: list, e) -> list:
