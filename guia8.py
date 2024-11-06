@@ -396,6 +396,30 @@ def navegar_atras(historiales: dict[str, Pila[str]], usuario: str):
     # actualizo los historiales
     historiales[usuario] = mi_historial
 
+# EJERCICIO 20
+# inv: dict = {}
+# inv["silla"] = {"precio": 1.1, "cantidad": 4}
+# inv["mesa"] = {"precio": 2.2, "cantidad": 3}
+# print(inv)
+
+def agregar_producto(inventario: dict[str, dict[str, float | int]], nombre: str, precio: float, cantidad: int):
+    info: dict = {}
+    info["precio"] = precio
+    info["cantidad"] = cantidad
+    inventario[nombre] = info
+
+def actualizar_stock(inventario: dict[str, dict[str, float | int]], nombre: str, cantidad: int):
+    inventario[nombre]["cantidad"] = cantidad
+
+def actualizar_precios(inventario: dict[str, dict[str, float | int]], nombre: str, precio: float):
+    inventario[nombre]["precio"] = precio
+
+def calcular_valor_inventario(inventario: dict[str, dict[str, float | int]]) -> float:
+    total: float = 0.0
+    for producto in inventario:
+        total += inventario[producto]["precio"] * inventario[producto]["cantidad"]
+    return total
+
 # EJERCICIO 21.1
 def contar_lineas(nombre_archivo: str) -> int:
     archivo = open(nombre_archivo, "r")
