@@ -200,6 +200,23 @@ def buscar_el_max_cola(c: Cola) -> int:
     while not c_copia.empty():
         c.put(c_copia.get())
     return max
+
+# EJERCICIO 11
+def buscar_nota_minima(c: Cola[tuple[str,int]]) -> tuple[str,int]:
+    c_reves: Cola = Cola()
+    nota_min: tuple = c.get()
+    c_reves.put(nota_min)
+    while not c.empty():
+        nota: tuple = c.get()
+        if nota[1] < nota_min[1]:
+            nota_min = nota
+        c_reves.put(nota)
+    c_copia: Cola = Cola()
+    while not c_reves.empty():
+        c_copia.put(c_reves.get())
+    while not c_copia.empty():
+        c.put(c_copia.get())
+    return nota_min
     
 # EJERCICIO 13.1
 def generar_tablero() -> list[int]:
