@@ -331,6 +331,44 @@ def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str,
         c.put(c_copia.get())
     return orden_de_atencion
 
+# EJERCICIO 16
+def agrupar_por_longitud(nombre_archivo: str) -> dict:
+    archivo = open(nombre_archivo, "r")
+    contenido: list = archivo.readlines()
+    archivo.close()
+    d: dict = {}
+    for linea in contenido:
+        d_linea: dict = longitudes_en_linea(linea)
+        for k in d_linea.keys():
+            if k in d:
+                d[k] += d_linea[k]
+            else:
+                d[k] = d_linea[k]
+    return d
+
+def longitudes_en_linea(linea: str) -> dict:
+    d: dict = {}
+    palabras: list = []
+    palabra_actual: str = ""
+    for i in linea:
+        if i != " ":
+            palabra_actual += i
+        else:
+            palabras.append(palabra_actual)
+            palabra_actual = ""
+    if (palabra_actual[-1] == "\n"): #quito caracter de salto de linea (no se puede usar slicing en el parcial pero fiaca implementarlo ahora)
+        palabra_actual = palabra_actual[:-1]
+    palabras.append(palabra_actual)
+    for i in palabras:
+        l: int = len(i)
+        if l in d:
+            d[l] += 1
+        else:
+            d[l] = 1
+    if 0 in d:
+        d.pop(0)
+    return d
+
 # EJERCICIO 17
 def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]) -> dict[str, float]:
     promedios: dict[str, float] = {}
