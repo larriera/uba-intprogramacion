@@ -58,7 +58,29 @@ def buscar_nota_maxima(p: Pila[tuple[str,int]]) -> Pila[int]:
     return nota_max
 
 # EJERCICIO 5
-#def esta_bien_balanceada(s: str) -> bool:
+def esta_bien_balanceada(s: str) -> bool:
+    p: Pila = Pila()
+    p_copia: Pila = Pila()
+    esta_bien: bool = True
+    for i in s:
+        if i == "(" or i == ")":
+            p.put(i)
+            p_copia.put(i) #armo dos copias de la pila de parentesis
+    cant_cierran: int = 0
+    while (not p.empty()) and esta_bien: # si esta bien balanceado, p deberia ser de la pinta ((((()))))
+        e: str = p.get()
+        p_copia.get()
+        if e == ")":
+            cant_cierran += 1
+        else:
+            p_copia.put(e) #laburo en la copia asi no se rompe la condicion del while
+            esta_bien = cantidad_elementos(p_copia) == cant_cierran
+    return esta_bien
+
+# print(esta_bien_balanceada("1 + ( 2 x 3 − ( 2 0 / 5 ) )"))
+# print(esta_bien_balanceada("1 + ( 2 x 3 − ( 2 0 / 5 ) ))"))
+# print(esta_bien_balanceada("10 ∗ ( 1 + ( 2 ∗ ( −1)))"))
+# print(esta_bien_balanceada("1 + ) 2 x 3 ( ( )"))
 
 # EJERCICIO 6
 def aplicar_operacion(oper: str, n1: float, n2: float) -> float:
