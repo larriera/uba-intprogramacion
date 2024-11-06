@@ -420,6 +420,7 @@ def calcular_valor_inventario(inventario: dict[str, dict[str, float | int]]) -> 
         total += inventario[producto]["precio"] * inventario[producto]["cantidad"]
     return total
 
+# Para el ejercicio 21, tomo como "palabra" a cualquier secuencia de caracteres no separados por espacios en blanco
 # EJERCICIO 21.1
 def contar_lineas(nombre_archivo: str) -> int:
     archivo = open(nombre_archivo, "r")
@@ -428,7 +429,18 @@ def contar_lineas(nombre_archivo: str) -> int:
     return len(lineas)
 
 # EJERCICIO 21.2
-#def existe_palabra(palabra: str, nombre_archivo: str) -> bool:
+def existe_palabra(palabra: str, nombre_archivo: str) -> bool:
+    palabras: list = palabras_en_archivo(nombre_archivo)
+    return palabra in palabras
+
+# EJERCICIO 21.3
+def cantidad_de_apariciones(palabra: str, nombre_archivo: str) -> int:
+    palabras: list = palabras_en_archivo(nombre_archivo)
+    cant: int = 0
+    for i in palabras:
+        if i == palabra:
+            cant += 1
+    return cant
 
 # EJERCICIO 22 - REVISAR!!!!!
 # def clonar_sin_comentarios(nombres_archivo: str):
