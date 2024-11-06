@@ -268,29 +268,6 @@ def quitar_elem(s: list, e) -> list:
             s.pop(i)
         i += 1
 
-# bol = armar_secuencia_bingo()
-# print(bol.queue)
-# c = generar_tablero()
-# print(c)
-# print(jugar_carton_de_bingo(c, bol))
-
-# EJERCICIO 16
-# def agrupar_por_longitud(nombre_archivo: str) -> dict:
-#     archivo = open(nombre_archivo, "r")
-#     lineas: list = archivo.readlines()
-
-# def listar_palabras(linea: list[str]) -> int:
-#     texto: str = ""
-#     for i in linea:
-#         texto += str(i)
-#     texto = texto.strip()
-#     palabras: list = []
-#     pal_actual: str = ""
-#     for i in texto:
-#         if 
-
-# listar_palabras("         aaa   bbb   cc d ")
-
 # EJERCICIO 14
 def n_pacientes_urgentes(c: Cola[tuple[int, str, str]]) -> int:
     c_copia: Cola = Cola()
@@ -334,30 +311,18 @@ def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str,
 # EJERCICIO 16
 def agrupar_por_longitud(nombre_archivo: str) -> dict:
     archivo = open(nombre_archivo, "r")
-    contenido: list = archivo.readlines()
+    contenido: list = archivo.read()
     archivo.close()
-    d: dict = {}
-    for linea in contenido:
-        d_linea: dict = longitudes_en_linea(linea)
-        for k in d_linea.keys():
-            if k in d:
-                d[k] += d_linea[k]
-            else:
-                d[k] = d_linea[k]
-    return d
-
-def longitudes_en_linea(linea: str) -> dict:
     d: dict = {}
     palabras: list = []
     palabra_actual: str = ""
-    for i in linea:
-        if i != " ":
-            palabra_actual += i
-        else:
+    print(contenido)
+    for i in contenido:
+        if (i == " ") or (i == "\n"):
             palabras.append(palabra_actual)
             palabra_actual = ""
-    if (palabra_actual[-1] == "\n"): #quito caracter de salto de linea (no se puede usar slicing en el parcial pero fiaca implementarlo ahora)
-        palabra_actual = palabra_actual[:-1]
+        else:
+            palabra_actual += i
     palabras.append(palabra_actual)
     for i in palabras:
         l: int = len(i)
@@ -386,8 +351,12 @@ def promedio_alumnos(notas: list[tuple[str, float]], alumno: str) -> float:
             cant_notas += 1
     return total_notas / cant_notas
 
-# testnotas = [("ana",10),("ana",9),("bruno",7),("ana",3),("bruno",9)]
-# print(calcular_promedio_por_estudiante(testnotas))
+# EJERCICIO 18
+# def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
+#     archivo = open(nombre_archivo, "r")
+#     contenido = archivo.read()
+#     archivo.close()
+
 
 # EJERCICIO 21.1
 def contar_lineas(nombre_archivo: str) -> int:
