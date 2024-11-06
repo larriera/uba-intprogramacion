@@ -455,8 +455,7 @@ def clonar_sin_comentario(nombre_archivo: str):
     partes_nombre: tuple = nombre_y_extension(nombre_archivo)
     nombre_clon: str = partes_nombre[0] + "_sincom." + partes_nombre[1]
     clon = open(nombre_clon, "w")
-    for i in lineas_filtradas:
-        clon.write(i)
+    clon.writelines(lineas_filtradas)
     clon.close()
 
 def es_comentario_valido(linea: str) -> bool:
@@ -494,3 +493,18 @@ def invertir_lineas(nombre_archivo: str):
     for i in range(len(lineas)-1, -1, -1):
         reverso.write(lineas[i] + "\n")
     reverso.close
+
+# EJERCICIO 24
+def agregar_frase_al_final(nombre_archivo: str, frase: str):
+    archivo = open(nombre_archivo, "a")
+    archivo.write("\n" + frase)
+    archivo.close()
+
+# EJERCICIO 25
+def agregar_frase_al_principio(nombre_archivo: str, frase: str):
+    archivo = open(nombre_archivo, "r")
+    contenido = archivo.read()
+    archivo.close()
+    archivo = open(nombre_archivo, "w")
+    archivo.write(frase + "\n" + contenido)
+    archivo.close()
