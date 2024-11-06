@@ -442,26 +442,44 @@ def cantidad_de_apariciones(palabra: str, nombre_archivo: str) -> int:
             cant += 1
     return cant
 
-# EJERCICIO 22 - REVISAR!!!!!
-# def clonar_sin_comentarios(nombres_archivo: str):
-#     archivo = open(nombres_archivo, "r+")
-#     lineas: list = archivo.readlines()
-#     print(lineas)
-#     clon: list = []
-#     for i in lineas:
-#         if i.strip()[0] != "#":
-#             clon.append(i)
-#     print(clon)
-#     archivo.writelines(clon)
-        
+# EJERCICIO 22
+def clonar_sin_comentario(nombre_archivo: str):
+    archivo = open(nombre_archivo, "r")
+    lineas: list = archivo.readlines()
+    archivo.close
+    lineas_filtradas: list = []
+    for i in lineas:
+        if es_comentario_valido(i):
+            lineas_filtradas.append(i)
+    # armo el clon
+    partes_nombre: tuple = nombre_y_extension(nombre_archivo)
+    nombre_clon: str = partes_nombre[0] + "_sincom." + partes_nombre[1]
+    clon = open(nombre_clon, "w")
+    for i in lineas_filtradas:
+        clon.write(i)
+    clon.close()
 
-# def es_comentario(linea: str) -> bool:
-#     # quito espacios:
-#     sin_esp: str = ""
-#     for i in range(len(linea) - 1):
-#         par: str = str(linea[i]) + str(linea[i+1])
-#         if par != "\t":
-#             sin_esp += str(linea[i])
-#     # evaluo si el primer caracter es un #:
-#     return sin_esp[0] == "#"
+def es_comentario_valido(linea: str) -> bool:
+    valido: bool = True
+    no_termine: bool = True
+    i: int = 0
+    while no_termine and (i < len(linea)):
+        if (linea[i] != " ") and (linea[i] != "\t"):
+            valido = linea[i] != "#"
+            no_termine = False
+        i += 1
+    return valido
 
+def nombre_y_extension(nombre_archivo: str) -> tuple[str, str]:
+    nombre: str = ""
+    ext: str = ""
+    i: int = 0
+    while (nombre_archivo[i] != ".") and (i < len(nombre_archivo)):
+        nombre += nombre_archivo[i]
+        i += 1
+    i += 1
+    while (i < len(nombre_archivo)):
+        ext += nombre_archivo[i]
+        i += 1
+    res: tuple = (nombre, ext)
+    return res
