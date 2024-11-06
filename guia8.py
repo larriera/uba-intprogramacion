@@ -1,16 +1,12 @@
 from queue import LifoQueue as Pila
 from queue import Queue as Cola
 import random
-import copy
 
 # EJERCICIO 1
 def generar_pila_al_azar(cantidad: int, desde: int, hasta: int) -> Pila[int]:
     p: Pila = Pila(cantidad)
     while not (p.full()):
-        print(p.queue)
         p.put(random.randint(desde, hasta))
-    print("DEVUELVE:")
-    print(p.queue)
     return p
 
 # EJERCICIO 2
@@ -25,8 +21,6 @@ def cant_elementos_pila(p: Pila) -> int:
         p.put(p_copia.get())
     return cant
 
-#pilatest = generar_pila_al_azar(5,0,15)
-
 # EJERCICIO 3
 def buscar_el_max_pila(p: Pila[int]) -> int:
     p_copia: Pila = Pila()
@@ -39,9 +33,6 @@ def buscar_el_max_pila(p: Pila[int]) -> int:
         p_copia.put(e)
     while not p_copia.empty(): #restauro la pila original
         p.put(p_copia.get())
-    print(max)
-    print(p_copia.queue)
-    print(p.queue)
     return max
 
 # EJERCICIO 4
@@ -77,11 +68,6 @@ def esta_bien_balanceada(s: str) -> bool:
             esta_bien = cant_elementos_pila(p_copia) == cant_cierran
     return esta_bien
 
-# print(esta_bien_balanceada("1 + ( 2 x 3 − ( 2 0 / 5 ) )"))
-# print(esta_bien_balanceada("1 + ( 2 x 3 − ( 2 0 / 5 ) ))"))
-# print(esta_bien_balanceada("10 ∗ ( 1 + ( 2 ∗ ( −1)))"))
-# print(esta_bien_balanceada("1 + ) 2 x 3 ( ( )"))
-
 # EJERCICIO 6
 def aplicar_operacion(oper: str, n1: float, n2: float) -> float:
     res: float = 0.0
@@ -100,7 +86,6 @@ def evaluar_expresion(s: str) -> float:
     elem: str = ""
     # construyo una lista con las partes de la expresion
     for i in s:
-        print(i)
         if i == " ":
             expresion.append(elem)
             elem = ""
@@ -109,10 +94,7 @@ def evaluar_expresion(s: str) -> float:
     expresion.append(elem) 
     operadores: str = "+-*/"
     pila: Pila = Pila()
-    print(expresion)
     for i in expresion:
-        print(pila.queue)
-        print(i)
         if i in operadores:
             n2 = float(pila.get())
             n1 = float(pila.get())
@@ -120,10 +102,6 @@ def evaluar_expresion(s: str) -> float:
         else:
             pila.put(i)
     return pila.get()
-
-# expresion = "3 4 + 5 * 2 -"
-# resultado = evaluar_expresion(expresion)
-# print(resultado) # Deber´ıa devolver 33
 
 # EJERCICIO 7
 def intercalar_pilas(p1: Pila, p2: Pila) -> Pila:
@@ -149,24 +127,11 @@ def intercalar_pilas(p1: Pila, p2: Pila) -> Pila:
         p2.put(p2_copia.get())
     return intercalado
 
-# uno = Pila()
-# dos = Pila()
-# uno.put(1)
-# uno.put(11)
-# uno.put(111)
-# dos.put(2)
-# dos.put(22)
-# dos.put(222)
-# print(intercalar_pilas(uno,dos).queue)
-
 # EJERCICIO 8
 def generar_cola_al_azar(cantidad: int, desde: int, hasta: int) -> Cola:
     c: Cola = Cola(cantidad)
     while not c.full():
-        print(c.queue)
         c.put(random.randint(desde, hasta))
-    print("DEVUELVE:")
-    print(c.queue)
     return c
 
 # EJERCICIO 9
@@ -244,7 +209,6 @@ def armar_secuencia_bingo() -> Cola[int]:
     bolillero: Cola[int] = Cola()
     while numeros != []:
         bolillero.put(numeros.pop())
-    print(bolillero.queue)
     return bolillero
 
 # EJERCICIO 13.2
@@ -298,7 +262,6 @@ def atencion_a_clientes(c: Cola[tuple[str, int, bool, bool]]) -> Cola[tuple[str,
         c_copia.put(cliente)
     orden_de_atencion: Cola = Cola()
     while not prioridad.empty():
-        print(prioridad.queue)
         orden_de_atencion.put(prioridad.get())
     while not preferencial.empty():
         orden_de_atencion.put(preferencial.get())
@@ -371,13 +334,6 @@ def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
     return mas_frecuente[0]
 
 # EJERCICIO 19
-# historiales: dict = {}
-# hist: Pila = Pila()
-# hist.put("marea.net.ar")
-# hist.put("oasis.net")
-# hist.put("google.com")
-# historiales["yop"] = hist
-
 def visitar_sitio(historiales: dict[str, Pila[str]], usuario: str, sitio: str):
     if usuario in historiales:
         historiales[usuario].put(sitio)
@@ -397,11 +353,6 @@ def navegar_atras(historiales: dict[str, Pila[str]], usuario: str):
     historiales[usuario] = mi_historial
 
 # EJERCICIO 20
-# inv: dict = {}
-# inv["silla"] = {"precio": 1.1, "cantidad": 4}
-# inv["mesa"] = {"precio": 2.2, "cantidad": 3}
-# print(inv)
-
 def agregar_producto(inventario: dict[str, dict[str, float | int]], nombre: str, precio: float, cantidad: int):
     info: dict = {}
     info["precio"] = precio
@@ -487,7 +438,6 @@ def nombre_y_extension(nombre_archivo: str) -> tuple[str, str]:
 def invertir_lineas(nombre_archivo: str):
     archivo = open(nombre_archivo, "r")
     lineas: list = archivo.readlines()
-    print(lineas)
     archivo.close()
     reverso = open("reverso.txt", "w")
     for i in range(len(lineas)-1, -1, -1):
@@ -526,4 +476,3 @@ def listar_palabras_de_archivo(nombre_archivo: str) -> list:
         else:
             palabra_actual = ""
     return palabras
-
