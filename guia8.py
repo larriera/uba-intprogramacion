@@ -328,7 +328,6 @@ def palabras_en_archivo(nombre_archivo: str) -> list[str]:
     archivo.close()
     palabras: list = []
     palabra_actual: str = ""
-    print(contenido)
     for i in contenido:
         if (i == " ") or (i == "\n"):
             palabras.append(palabra_actual)
@@ -356,12 +355,20 @@ def promedio_alumnos(notas: list[tuple[str, float]], alumno: str) -> float:
     return total_notas / cant_notas
 
 # EJERCICIO 18
-# def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
-#     archivo = open(nombre_archivo, "r")
-#     contenido = archivo.read()
-#     archivo.close()
-    
-
+def la_palabra_mas_frecuente(nombre_archivo: str) -> str:
+    palabras: list = palabras_en_archivo(nombre_archivo)
+    frecuencias: dict = {}
+    for i in palabras:
+        if i in frecuencias:
+            frecuencias[i] += 1
+        else:
+            frecuencias[i] = 1
+    mas_frecuente: list = ("", 0)
+    for k in frecuencias:
+        if int(frecuencias[k]) > int(mas_frecuente[1]):
+            nueva_mas_frecuente: tuple = (k, frecuencias[k])
+            mas_frecuente = nueva_mas_frecuente
+    return mas_frecuente[0]    
 
 # EJERCICIO 21.1
 def contar_lineas(nombre_archivo: str) -> int:
