@@ -508,3 +508,22 @@ def agregar_frase_al_principio(nombre_archivo: str, frase: str):
     archivo = open(nombre_archivo, "w")
     archivo.write(frase + "\n" + contenido)
     archivo.close()
+
+# EJERCICIO 26
+def listar_palabras_de_archivo(nombre_archivo: str) -> list:
+    archivo = open(nombre_archivo, "r+b")
+    contenido_en_b: list = archivo.read()
+    archivo.close()
+    palabras: list = []
+    palabra_actual: str = []
+    caracteres: str = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789 _"
+    for b in contenido_en_b:
+        if chr(b) in caracteres:
+            palabra_actual += chr(b)
+        elif len(palabra_actual) > 6:
+            palabras.append(palabra_actual)
+            palabra_actual = ""
+        else:
+            palabra_actual = ""
+    return palabras
+
