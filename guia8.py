@@ -309,6 +309,22 @@ def quitar_elem(s: list, e) -> list:
 
 # listar_palabras("         aaa   bbb   cc d ")
 
+# EJERCICIO 14
+def n_pacientes_urgentes(c: Cola[tuple[int, str, str]]) -> int:
+    c_reves: Cola = Cola()
+    cant_urgentes: int = 0
+    while not c.empty():
+        paciente: tuple = c.get()
+        if 0 < paciente[0] < 4:
+            cant_urgentes += 1
+        c_reves.put(paciente)
+    c_copia: Cola = Cola()
+    while not c_reves.empty():
+        c_copia.put(c_reves.get())
+    while not c_copia.empty():
+        c.put(c_copia.get())
+    return cant_urgentes
+
 # EJERCICIO 17
 def calcular_promedio_por_estudiante(notas: list[tuple[str, float]]) -> dict[str, float]:
     promedios: dict[str, float] = {}
