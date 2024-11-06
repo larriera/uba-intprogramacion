@@ -483,3 +483,14 @@ def nombre_y_extension(nombre_archivo: str) -> tuple[str, str]:
         i += 1
     res: tuple = (nombre, ext)
     return res
+
+# EJERCICIO 23
+def invertir_lineas(nombre_archivo: str):
+    archivo = open(nombre_archivo, "r")
+    lineas: list = archivo.readlines()
+    print(lineas)
+    archivo.close()
+    reverso = open("reverso.txt", "w")
+    for i in range(len(lineas)-1, -1, -1):
+        reverso.write(lineas[i] + "\n")
+    reverso.close
