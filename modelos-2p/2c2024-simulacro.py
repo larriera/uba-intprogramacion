@@ -175,14 +175,12 @@ def minimo(s: list[int]) -> int:
 # AUX: dada una lista de listas que representa una matriz, deuvelve la matriz transpuesta
 def transponer(matriz: list[list[int]]) -> list[list[int]]:
     mt: list[list[int]] = []
-    for j in range(len(matriz)):
+    for j in range(len(matriz[0])):
         col: list[int] = []
         for i in range(len(matriz)):
             col.append(matriz[i][j])
         mt.append(col)
     return mt
-
-
 
 # 5) Preguntas teóricas (2 puntos)
 
