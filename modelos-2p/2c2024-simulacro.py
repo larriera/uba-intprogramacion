@@ -64,10 +64,13 @@ def pertenece(s: list, elemento) -> bool:
 def cantidad_digitos_pares(numeros: list[int]) -> int:
     cant_pares: int = 0
     for n in numeros:
-        cant_pares += digi_pares(n)
+        if n == 0:
+            cant_pares += 1
+        else:
+            cant_pares += digi_pares(n)
     return cant_pares
 
-# AUX: devuelve la cantidad de digitos pares en un numero entero
+# AUX: devuelve la cantidad de digitos pares en un numero entero mayor a 0
 def digi_pares(n: int) -> int:
     cant: int = 0
     while n > 0:
