@@ -5,9 +5,10 @@
 # Un grupo de amigos apasionados por las salas de escape, esas aventuras inmersivas donde tienen 
 # 60 minutos para salir de una habitación resolviendo enigmas, llevan un registro meticuloso de 
 # todas las salas de escape que hay en Capital. Este registro indica si han visitado una sala y 
-# si pudieron o no salir de ella. Un 0 significa que no fueron, un 61 que no lograron salir a 
-# tiempo, y un número entre 1 y 60 representa los minutos que les tomó escapar exitosamente. Con 
-# estos datos, pueden comparar sus logros y desafíos en cada nueva aventura que emprenden juntos.
+# si pudieron o no salir de ella. 
+
+# Un 0 significa que no fueron, un 61 que no lograron salir a tiempo, y un número entre 1 y 60 
+# representa los minutos que les tomó escapar exitosamente. 
 
 # 1) Promedio de salidas [2 puntos]
 
@@ -27,6 +28,38 @@
 #   asegura: {El primer elemento de la tupla de res para un integrante, es la cantidad de salas con tiempo mayor estricto a 0 y menor estricto a 61 que figuran en sus valores de registro}
 #   asegura: {El segundo elemento de la tupla de res para un integrante, si la cantidad de salas de las que salió es mayor a 0: es el promedio de salas con tiempo mayor estricto a 0 y menor estricto a 61 que figuran en sus valores de registro; sino es 0.0}
 # }
+
+# ej de input: d = {"ana":[0,14,61,16],"beto":[0,0,43,1],"cata":[15,23,61,0],"diego":[61,61,9,1]}
+
+def promedio_de_salidas(registro: dict[str, list[int]]) -> dict[str, tuple[int,float]]:
+    promedios: dict[str, tuple[int,float]] = {}
+    for nombre in registro.keys():
+        promedios[nombre] = stats_escapes(registro[nombre])
+    return promedios
+        
+# AUX: pertenece (decidi que el tipo sea generico para poder reutilizarlo a lo largo del parcial)
+def pertenece(elem, s: list) -> bool:
+    perte: bool = False
+    i: int = 0
+    while (not perte) and (i < len(s)):
+        if elem == s[i]:
+            perte = True
+        i += 1
+    return perte
+
+# AUX: dada una lista de tiempos, devuelve la tupla (salasQueGano, promedioDeTiempo)
+def stats_escapes(tiempos: list[int]) -> tuple[int,float]:
+    cant_escapes: int = 0
+    promedio: float = 0.0
+    for t in tiempos:
+        if 0 < t < 61:
+            cant_escapes += 1
+            promedio += t
+    if cant_escapes > 0:
+        promedio = promedio / cant_escapes
+    return (cant_escapes, promedio)
+
+# --------------------------------------
 
 # 2) Tiempo más rápido [1 punto]
 
