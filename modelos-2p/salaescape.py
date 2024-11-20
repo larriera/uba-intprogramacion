@@ -91,20 +91,59 @@ def tiempo_mas_rapido(tiempos_salas: list[int]) -> int:
 
 # 3) Racha más larga [3 puntos]
 
-# Dada una lista con los tiempos (en minutos) registrados para cada sala de escape a la que fue una persona, escribir una función en Python que devuelva una tupla con el índice de inicio y el índice de fin de la subsecuencia más larga de salidas exitosas de salas de escape consecutivas.
+# Dada una lista con los tiempos (en minutos) registrados para cada sala de escape a la que fue 
+# una persona, escribir una función en Python que devuelva una tupla con el índice de inicio y el 
+# índice de fin de la subsecuencia más larga de salidas exitosas de salas de escape consecutivas.
 
 # problema racha_mas_larga (in tiempos: seq⟨Z⟩): ⟨Z x Z⟩ {
 #   requiere: {Hay por lo menos un elemento en tiempos entre 1 y 60 inclusive}
 #   requiere: {Todos los tiempos en tiempos están entre 0 y 61 inclusive}
-#   asegura: {En la primera posición de res está la posición (índice de la lista) de la sala que inicia la racha más larga}
-#   asegura: {En la segunda posición de res está la posición (índice de la lista) de la sala que finaliza la racha más larga}
-#   asegura: {El elemento de la primer posición de res en tiempos es mayor estricto 0 y menor estricto que 61}
-#   asegura: {El elemento de la segunda posición de res en tiempos es mayor estricto 0 y menor estricto que 61}
+#   asegura: {En la primera posición de res está la posición (índice de la lista) de la sala que 
+#       inicia la racha más larga}
+#   asegura: {En la segunda posición de res está la posición (índice de la lista) de la sala que 
+#       finaliza la racha más larga}
+#   asegura: {El elemento de la primer posición de res en tiempos es mayor estricto 0 y menor 
+#       estricto que 61}
+#   asegura: {El elemento de la segunda posición de res en tiempos es mayor estricto 0 y menor 
+#       estricto que 61}
 #   asegura: {La primera posición de res es menor o igual a la segunda posición de res }
-#   asegura: {No hay valores iguales a 0 o a 61 en tiempos entre la primer posición de res y la segunda posición de res}
-#   asegura: {No hay otra subsecuencia de salidas exitosas, en tiempos, de mayor longitud que la que está entre la primer posición de res y la segunda posición de res}
-#   asegura: {Si hay dos o más subsecuencias de salidas exitosas de mayor longitud en tiempos, res debe contener la primera de ellas.}
+#   asegura: {No hay valores iguales a 0 o a 61 en tiempos entre la primer posición de res y la 
+#       segunda posición de res}
+#   asegura: {No hay otra subsecuencia de salidas exitosas, en tiempos, de mayor longitud que la 
+#       que está entre la primer posición de res y la segunda posición de res}
+#   asegura: {Si hay dos o más subsecuencias de salidas exitosas de mayor longitud en tiempos, res 
+#       debe contener la primera de ellas.}
 # }
+
+# ej de input: t = [0,22,10,19,0,61,8,0,14,29,61] -> (1,3) - o sea 22,10,19
+
+def racha_mas_larga(tiempos: list[int]) -> tuple[int,int]:
+    rachas: list[list[int]] = []
+    inicios_r: list[int] = []
+    racha_actual: list[int] = []
+    inicio_actual: int = 0
+    for i in range(len(tiempos)):
+        print(i)
+        if not (0 < tiempos[i] < 61):
+            rachas.append(racha_actual)
+            inicios_r.append(inicio_actual)
+            racha_actual = []
+            inicio_actual = i+1
+        else:
+            racha_actual.append(tiempos[i])
+    #agrego la ultima instancia que me falta
+    rachas.append(racha_actual)
+    inicios_r.append(inicio_actual)
+    #busco cual es la racha mas larga para conseguir la data de la tupla
+    r_mas_larga: list[int] = rachas[0]
+    i_mas_larga: int = inicios_r[0]
+    for i in range(len(rachas)):
+        if len(rachas[i]) > len(r_mas_larga):
+            r_mas_larga = rachas[i]
+            i_mas_larga = inicios_r[i]
+    return (i_mas_larga, i_mas_larga + len(r_mas_larga) - 1)
+
+# --------------------------------------
 
 # 4) Escape en solitario [2 puntos]
 
