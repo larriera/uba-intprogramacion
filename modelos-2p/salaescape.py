@@ -181,18 +181,18 @@ def escape_en_solitario(amigos_en_salas: list[list[int]]) -> list[int]:
 
 # A) ¿Cuál es el propósito de la sentencia 'else' en una estructura 'if' en Python? (0.75 punto)
 
-# Definir una variable local.
-# Ejecutar un bloque de código si todas las condiciones anteriores son falsas.
-# Iniciar un ciclo 'while'.
+# [ ] Definir una variable local.
+# [X] Ejecutar un bloque de código si todas las condiciones anteriores son falsas.
+# [ ] Iniciar un ciclo 'while'.
 
 # B) ¿Qué hace la sentencia 'break' en un ciclo en Python? (0.75 punto)
 
-# Reinicia el ciclo desde el principio.
-# Termina el ciclo inmediatamente.
-# Salta la siguiente iteración del ciclo.
+# [ ] Reinicia el ciclo desde el principio.
+# [X] Termina el ciclo inmediatamente.
+# [ ] Salta la siguiente iteración del ciclo.
 
 # C) ¿Qué diferencia hay entre coverage de sentencias y coverage de branches? (0.5 punto)
 
-# Coverage de sentencias verifica cada línea de código, mientras que coverage de branches verifica las posibles salidas de las decisiones lógicas.
-# Coverage de branches verifica cada línea de código, mientras que coverage de sentencias verifica las posibles salidas de las decisiones lógicas.
-# No hay diferencia, ambos se refieren al mismo concepto.
+# [X] Coverage de sentencias verifica cada línea de código, mientras que coverage de branches verifica las posibles salidas de las decisiones lógicas.
+# [ ] Coverage de branches verifica cada línea de código, mientras que coverage de sentencias verifica las posibles salidas de las decisiones lógicas.
+# [ ] No hay diferencia, ambos se refieren al mismo concepto.
