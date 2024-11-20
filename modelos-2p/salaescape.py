@@ -147,16 +147,33 @@ def racha_mas_larga(tiempos: list[int]) -> tuple[int,int]:
 
 # 4) Escape en solitario [2 puntos]
 
-# Dada una matriz donde las columnas representan a cada amigo y las filas representan las salas de escape, y los valores son los tiempos (en minutos) registrados para cada sala (0 si no fueron, 61 si no salieron, y un número entre 1 y 60 si salieron), escribir una función en Python que devuelva los índices de todas las filas (que representan las salas) en las cuales el primer, segundo y cuarto amigo no fueron (0), pero el tercero sí fue (independientemente de si salió o no).
+# Dada una matriz donde las columnas representan a cada amigo y las filas representan las 
+# salas de escape, y los valores son los tiempos (en minutos) registrados para cada sala 
+# (0 si no fueron, 61 si no salieron, y un número entre 1 y 60 si salieron), escribir una 
+# función en Python que devuelva los índices de todas las filas (que representan las salas) 
+# en las cuales el primer, segundo y cuarto amigo no fueron (0), pero el tercero sí fue 
+# (independientemente de si salió o no).
 
 # problema escape_en_solitario (in amigos_por_salas: seq⟨seq⟨Z⟩⟩): seq⟨Z⟩ {
 #   requiere: {Hay por lo menos una sala en amigos_por_salas}
 #   requiere: {Hay 4 amigos en amigos_por_salas}
 #   requiere: {Todos los tiempos en cada sala de amigos_por_salas están entre 0 y 61 inclusive}
 #   asegura: {La longitud de res es menor igual que la longitud de amigos_por_salas}
-#   asegura: {Por cada sala en amigos_por_salas cuyo primer, segundo y cuarto valor sea 0, y el tercer valor sea distinto de 0, la posición de dicha sala en amigos_por_salas debe aparecer res}
-#   asegura: {Para todo i pertenciente a res se cumple que el primer, segundo y cuarto valor de amigos_por_salas[i] es 0, y el tercer valor es distinto de 0}
+#   asegura: {Por cada sala en amigos_por_salas cuyo primer, segundo y cuarto valor sea 0, 
+#       y el tercer valor sea distinto de 0, la posición de dicha sala en amigos_por_salas 
+#       debe aparecer res}
+#   asegura: {Para todo i pertenciente a res se cumple que el primer, segundo y cuarto valor 
+#       de amigos_por_salas[i] es 0, y el tercer valor es distinto de 0}
 # }
+
+def escape_en_solitario(amigos_en_salas: list[list[int]]) -> list[int]:
+    i_solitarios: list[int] = []
+    for i in range(len(amigos_en_salas)):
+        if (amigos_en_salas[i][0] == amigos_en_salas[i][1] == amigos_en_salas[i][3] == 0) and (amigos_en_salas[i][2] > 0):
+            i_solitarios.append(i)
+    return i_solitarios
+
+# --------------------------------------
 
 # 5) Preguntas teóricas (2 puntos)
 
