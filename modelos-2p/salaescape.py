@@ -10,6 +10,8 @@
 # Un 0 significa que no fueron, un 61 que no lograron salir a tiempo, y un número entre 1 y 60 
 # representa los minutos que les tomó escapar exitosamente. 
 
+# --------------------------------------
+
 # 1) Promedio de salidas [2 puntos]
 
 # Dado un diccionario donde la clave es el nombre de cada amigo y el valor es una lista de los 
@@ -28,8 +30,6 @@
 #   asegura: {El primer elemento de la tupla de res para un integrante, es la cantidad de salas con tiempo mayor estricto a 0 y menor estricto a 61 que figuran en sus valores de registro}
 #   asegura: {El segundo elemento de la tupla de res para un integrante, si la cantidad de salas de las que salió es mayor a 0: es el promedio de salas con tiempo mayor estricto a 0 y menor estricto a 61 que figuran en sus valores de registro; sino es 0.0}
 # }
-
-# ej de input: d = {"ana":[0,14,61,16],"beto":[0,0,43,1],"cata":[15,23,61,0],"diego":[61,61,9,1]}
 
 def promedio_de_salidas(registro: dict[str, list[int]]) -> dict[str, tuple[int,float]]:
     promedios: dict[str, tuple[int,float]] = {}
@@ -63,13 +63,31 @@ def stats_escapes(tiempos: list[int]) -> tuple[int,float]:
 
 # 2) Tiempo más rápido [1 punto]
 
-# Dada una lista con los tiempos (en minutos) registrados para cada sala de escape de Capital, escribir una función en Python que devuelva la posición (índice) en la cual se encuentra el tiempo más rápido, excluyendo las salas en las que no haya salido (0 o mayor a 60).
+# Dada una lista con los tiempos (en minutos) registrados para cada sala de escape de Capital, 
+# escribir una función en Python que devuelva la posición (índice) en la cual se encuentra el 
+# tiempo más rápido, excluyendo las salas en las que no haya salido (0 o mayor a 60).
 
 # problema tiempo_mas_rapido (in tiempos_salas: seq⟨Z⟩): Z {
 #   requiere: {Hay por lo menos un elemento en tiempos_salas entre 1 y 60 inclusive}
 #   requiere: {Todos los tiempos en tiempos_salas están entre 0 y 61 inclusive}
-#   asegura: {res es la posición de la sala en tiempos_salas de la que más rápido se salió (en caso que haya más de una, devolver la primera, osea la de menor índice)}
+#   asegura: {res es la posición de la sala en tiempos_salas de la que más rápido se salió (en 
+#       caso que haya más de una, devolver la primera, osea la de menor índice)}
 # }
+
+# ej de input: tiempos = [0,10,15,61,1,61] -> res: 4 ||| tiempos2 = [0,0,1,1,0] -> res: 2
+
+def tiempo_mas_rapido(tiempos_salas: list[int]) -> int:
+    min: int = 61
+    i_min: int = -1
+    i: int = 0
+    while (i < len(tiempos_salas)):
+        if (0 < tiempos_salas[i] < 61) and (tiempos_salas[i] < min):
+            min = tiempos_salas[i]
+            i_min = i
+        i += 1
+    return i_min
+
+# --------------------------------------
 
 # 3) Racha más larga [3 puntos]
 
