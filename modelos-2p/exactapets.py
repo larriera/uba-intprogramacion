@@ -1,10 +1,13 @@
+from math import sqrt as sqrt
+from math import floor as floor
+
 # ======================================
 # EXACTAPETS - 1c2024 (?)
 # ======================================
 
 # 1) Códigos filtrados [2 puntos]
-# El hijo del dueño de la veterinaria, cuya actividad principal es ver tik toks, cree que los productos 
-# cuyos código de barras terminimoan en números primos son especialmente auspiciosos y deben ser destacados
+# El hijo del dueño de la veterinaria, cuya actividad principal es ver tiktoks, cree que los productos 
+# cuyos código de barras terminan en números primos son especialmente auspiciosos y deben ser destacados
 # en la tienda. Luego de convencer a su padre de esta idea, solicita una función en python que facilite
 # esta gestión.
 
@@ -23,6 +26,24 @@
 # están en res}
 # asegura: {Todos los elementos de res están en codigos_barra}
 # }
+
+def filtrar_codigos_primos(codigos_barra: list[int]) -> list[int]:
+    lista_filtrada: list[int] = []
+    for c in codigos_barra:
+        if es_primo(c % 1000):
+            lista_filtrada.append(c)
+    return lista_filtrada # FALTA TESTEARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 14:50 PAUSE
+
+def es_primo(n: int) -> bool:
+    es_p: bool = True
+    tope: int = floor(sqrt(n))
+    if n < 2:
+        es_p = False
+    while (tope > 1) and es_p:
+        if (n % tope) == 0:
+            es_p = False
+        tope -= 1
+    return es_p
 
 # --------------------------------------
 
