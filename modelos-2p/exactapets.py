@@ -52,7 +52,7 @@ def es_primo(n: int) -> bool:
 
 # En la veterinaria "Exacta's pets", al finalizar cada día, el personal registra en papeles los nombres y
 # la cantidad actual de los productos cuyo stock ha cambiado. Para mejorar la gestión, desde la dirección
-# de la veterinaria han pedido desarrollar una solución en Python que les permita analizar las
+# de la veterinaria han pedido desarrollar una solución en Python que les permita Alizar las
 # fluctuaciones del stock.
 
 # Se pide implementar una función que reciba una lista de tuplas, donde cada tupla contiene el nombre de 
@@ -114,14 +114,14 @@ def pertenece(s: list, e) -> bool:
 
 # Las personas responsables de los turnos están anotadas en una matriz donde las columnas representan los
 # días, en orden de lunes a domingo, y cada fila a un rango de una hora. Hay cuatro filas para los turnos 
-# de la mañana (9, 10, 11 y 12 hs) y otras cuatro para la tarde (14, 15, 16 y 17).
+# de la mañA (9, 10, 11 y 12 hs) y otras cuatro para la tarde (14, 15, 16 y 17).
 
-# Para hacer más eficiente el trabajo del personal de la veterinaria, se necesita analizar si quienes 
+# Para hacer más eficiente el trabajo del personal de la veterinaria, se necesita Alizar si quienes 
 # quedan de responsables, están asignadas de manera continuada en los turnos de cada día.
 
 # Para ello se pide desarrollar una función en Python que, dada la matriz de turnos, devuelva una lista
 # de tuplas de Bool, una por cada día. Cada tupla debe contener dos elementos. El primer elemento debe ser
-# True sí y solo sí todos los valores de los turnos de la mañana para ese día son iguales entre sí. El 
+# True sí y solo sí todos los valores de los turnos de la mañA para ese día son iguales entre sí. El 
 # segundo elemento debe ser True sí y solo sí todos los valores de los turnos de la tarde para ese día 
 # son iguales entre sí. Siempre hay una persona responsable en cualquier horario de la veterinaria.
 
@@ -135,6 +135,40 @@ def pertenece(s: list, e) -> bool:
 # asegura: {El segundo valor de la tupla en res[i], con i:Z, 0 <= i < |res| es igual a True <==> los últimos
 # 4 valores de la columna i de grilla_horaria son iguales entre sí}
 # }
+
+# ejemplo = [["A", "A", "B", "B", "C", "C", "D"],
+#            ["A", "A", "B", "B", "C", "C", "D"],
+#            ["A", "A", "D", "D", "C", "C", "D"],
+#            ["A", "D", "B", "D", "C", "A", "D"],
+#            ["D", "A", "B", "D", "A", "A", "B"],
+#            ["D", "A", "D", "C", "A", "C", "B"],
+#            ["D", "A", "B", "B", "C", "C", "B"],
+#            ["C", "A", "B", "B", "C", "C", "B"],
+#           ]
+# debe devolver: [(True, False), (False, True), (False, False), (False, False), (True, False), (False, False), (True, True)]
+
+def un_responsable_por_turno(grilla_horaria: list[list[str]]) -> list[tuple[bool,bool]]:
+    por_dia: list[list[str]] = transponer(grilla_horaria)
+    turnos_continuos: list[tuple[bool,bool]] = []
+    for dia in por_dia:
+        tm_continuo: bool = False
+        tt_continuo: bool = False
+        if dia[0] == dia[1] == dia[2] == dia[3]:
+            tm_continuo = True
+        if dia[4] == dia[5] == dia[6] == dia[7]:
+            tt_continuo = True
+        turnos_continuos.append((tm_continuo, tt_continuo))
+    return turnos_continuos
+
+#AUX: transponer
+def transponer(matriz: list[list]):
+    m_t: list = []
+    for j in range(len(matriz[0])):
+        col: list = []
+        for i in range(len(matriz)):
+            col.append(matriz[i][j])
+        m_t.append(col)
+    return m_t
 
 # --------------------------------------
 
