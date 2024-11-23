@@ -189,6 +189,29 @@ def transponer(matriz: list[list]):
 # asegura: {Si hay más de una subsecuencia de tamaño máximo, res tiene el índice de la primera}
 # }
 
+def subsecuencia_mas_larga(tipos_pacientes_atendidos: list[str]) -> int:
+    secuencias: list[list[str]] = []
+    i_secuencias: list[int] = []
+    sec_actual: list[str] = []
+    inicio_actual: str = 0
+    for i in range(len(tipos_pacientes_atendidos)):
+        if (tipos_pacientes_atendidos[i] == "perro") or (tipos_pacientes_atendidos[i] == "gato"):
+            sec_actual.append(tipos_pacientes_atendidos[i])
+        else:
+            secuencias.append(sec_actual)
+            sec_actual = []
+            i_secuencias.append(inicio_actual)
+            inicio_actual = i+1
+    secuencias.append(sec_actual)
+    i_secuencias.append(inicio_actual)
+    len_mas_larga = len(secuencias[0])
+    i_mas_larga: int = 0
+    for i in range(len(secuencias)):
+        if len(secuencias[i]) > len_mas_larga:
+            len_mas_larga = len(secuencias[i])
+            i_mas_larga = i_secuencias[i]
+    return i_mas_larga
+
 # --------------------------------------
 
 # 5) Preguntas teóricas [2 puntos]
@@ -196,19 +219,19 @@ def transponer(matriz: list[list]):
 # A) ¿Cuál es la diferencia entre una variable de 'scope global' y una variable de 'scope local'? 
 # (0.75 puntos)
 # [ ] No hay ninguna diferencia, ambos términos significan lo mismo.
-# [ ] Las variables globales son accesibles desde cualquier parte del programa, mientras que las 
+# [x] Las variables globales son accesibles desde cualquier parte del programa, mientras que las 
 # variables locales solo son accesibles dentro del bloque.
 # [ ] Las variables locales son accesibles desde cualquier parte del programa, mientras que las 
 # variables globales solo son accesibles dentro del bloque donde fueron definidas.
 
 # B) ¿Qué se entiende por 'estado' en un programa? (0.75 puntos)
 # [ ] La apariencia visual del código fuente.
-# [ ] La configuración de todas las variables en un punto específico durante la ejecución de un
+# [x] La configuración de todas las variables en un punto específico durante la ejecución de un
 # programa.
 # [ ] El nombre del archivo donde se guarda el código fuente.
 
 # C) ¿Qué es un Control Flow Graph? (0.5 puntos)
 # [ ] Un diagrama que representa la estructura jerárquica del código.
-# [ ] Un diagrama que muestra los diferentes cambios que puede tomar la ejecución del programa a
+# [x] Un diagrama que muestra los diferentes cambios que puede tomar la ejecución del programa a
 # través de sus instrucciones y decisiones.
 # [ ] Un gráfico que representa el rendimiento del software en diferentes entornos.
