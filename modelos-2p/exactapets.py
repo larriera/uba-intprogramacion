@@ -34,6 +34,7 @@ def filtrar_codigos_primos(codigos_barra: list[int]) -> list[int]:
             lista_filtrada.append(c)
     return lista_filtrada # FALTA TESTEARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 14:50 PAUSE
 
+# AUX: evalua si un entero es primo
 def es_primo(n: int) -> bool:
     es_p: bool = True
     tope: int = floor(sqrt(n))
@@ -67,6 +68,45 @@ def es_primo(n: int) -> bool:
 # asegura: {El valor en res de un producto es una tupla de cantidades. Su primer elemento es la menor 
 # cantidad de ese producto en stock_cambios y como segundo valor el mayor}
 # }
+
+
+def stock_productos(stock_cambios: list[tuple[str, int]]) -> dict[str, tuple[int, int]]:
+    stock_historico: dict[str, tuple[int, int]] = {}
+    for prod in stock_cambios:
+        if not pertenece(list(stock_historico.keys()), prod[0]):
+            stock_historico[prod[0]] = min_max_historico(stock_cambios, prod[0])
+    return stock_historico
+
+# AUX: devuelve una lista con todos los valores de stock que se registraron para producto
+def filtrar_cambios(stock_cambios: list[tuple[str, int]], producto: str) -> list[int]:
+    cambios: list[int] = []
+    for prod in stock_cambios:
+        if prod[0] == producto:
+            cambios.append(prod[1])
+    return cambios
+
+# AUX: devuelve la tupla con el minimo y el maximo historico de stock (requiere que producto 
+# sea el primer elemento  de alguna de las tuplas de stock_cambios)
+def min_max_historico(stock_cambios: list[tuple[str, int]], producto: str) -> tuple[int,int]:
+    cambios: list[int] = filtrar_cambios(stock_cambios, producto)
+    min: int = cambios[0]
+    max: int = cambios[0]
+    for c in cambios:
+        if c > max:
+            max = c
+        elif c < min:
+            min = c
+    return (min, max)
+
+# AUX: pertenece (decidi implementarlo para listas de tipo generico asi puedo reutilizarlo a lo largo del parcial)
+def pertenece(s: list, e) -> bool:
+    pert: bool = False
+    i: int = 0
+    while (not pert) and (i < len(s)):
+        if s[i] == e:
+            pert = True
+        i += 1
+    return pert
 
 # --------------------------------------
 
