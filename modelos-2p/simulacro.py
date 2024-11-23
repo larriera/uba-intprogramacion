@@ -1,3 +1,7 @@
+# ======================================
+# SIMULACRO - 2c2024
+# ======================================
+
 from queue import Queue as Cola
 
 # 1) Gestión de notas de estudiantes [2 puntos]
