@@ -32,7 +32,7 @@ def filtrar_codigos_primos(codigos_barra: list[int]) -> list[int]:
     for c in codigos_barra:
         if es_primo(c % 1000):
             lista_filtrada.append(c)
-    return lista_filtrada # FALTA TESTEARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 14:50 PAUSE
+    return lista_filtrada
 
 # AUX: evalua si un entero es primo
 def es_primo(n: int) -> bool:

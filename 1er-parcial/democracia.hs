@@ -117,6 +117,6 @@ cantVotosVice vice ((pr,vc):fs) (v:vs)
     | otherwise = cantVotosVice vice fs vs
 
 
--- Ejercicio 4
+-- Ejercicio 4 (SIN HACER)
 menosVotado :: [(String, String)] -> [Int] -> String
 menosVotado _ _ = ""
